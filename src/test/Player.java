@@ -55,7 +55,7 @@ public class Player {
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
     }
 
-    public void move(){
+    public void playerBarMove(){
         double x = ballPoint.getX() + moveAmount;
         if(x < min || x > max)
             return;
@@ -63,15 +63,15 @@ public class Player {
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
-    public void moveLeft(){
+    public void playerBarMoveLeft(){
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
-    public void movRight(){
+    public void playerBarMoveRight(){
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
-    public void stop(){
+    public void playerBarStop(){
         moveAmount = 0;
     }
 
@@ -79,7 +79,7 @@ public class Player {
         return  playerFace;
     }
 
-    public void moveTo(Point p){
+    public void playerBarMoveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }

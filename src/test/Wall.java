@@ -175,7 +175,7 @@ public class Wall {
     }
 
     public void move(){
-        player.move();
+        player.playerBarMove();
         ball.move();
     }
 
@@ -242,7 +242,7 @@ public class Wall {
     }
 
     public void ballReset(){
-        player.moveTo(startPoint);
+        player.playerBarMoveTo(startPoint);
         ball.moveTo(startPoint);
         int speedX,speedY;
         do{
