@@ -128,13 +128,13 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(Color.BLUE);
         g2d.drawString(message,250,225);
 
-        drawBall(wall.ball,g2d);
+        drawBall(wall.getBall(),g2d);
 
-        for(Brick b : wall.bricks)
+        for(Brick b : wall.getBricks())
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
-        drawPlayerControlBar(wall.player,g2d);
+        drawPlayerControlBar(wall.getPlayer(),g2d);
 
         if(showPauseMenu)
             drawMenu(g2d);
@@ -180,10 +180,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Color tmp = g2d.getColor();
 
         Shape s = p.getPlayerFace();
-        g2d.setColor(Player.INNER_COLOR);
+        g2d.setColor(Player.getInnerColor());
         g2d.fill(s);
 
-        g2d.setColor(Player.BORDER_COLOR);
+        g2d.setColor(Player.getBorderColor());
         g2d.draw(s);
 
         g2d.setColor(tmp);
@@ -271,10 +271,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
-                wall.player.playerBarMoveLeft();
+                wall.getPlayer().playerBarMoveLeft();
                 break;
             case KeyEvent.VK_D:
-                wall.player.playerBarMoveRight();
+                wall.getPlayer().playerBarMoveRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 showPauseMenu = !showPauseMenu;
@@ -292,13 +292,13 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
                     debugConsole.setVisible(true);
             default:
-                wall.player.playerBarStop();
+                wall.getPlayer().playerBarStop();
         }
     }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        wall.player.playerBarStop();
+        wall.getPlayer().playerBarStop();
     }
 
     @Override
