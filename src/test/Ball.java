@@ -62,11 +62,6 @@ abstract public class Ball {
         ballFace = tmp;
     }
 
-    public void setSpeed(int x,int y){
-        speedX = x;
-        speedY = y;
-    }
-
     public void setXSpeed(int s){
         speedX = s;
     }

@@ -66,7 +66,8 @@ public class Wall {
             speedY = -rnd.nextInt(3);
         }while(speedY == 0);
 
-        ball.setSpeed(speedX,speedY);
+        ball.setXSpeed(speedX);
+        ball.setYSpeed(speedY);
 
         player = new Player((Point) ballPos.clone(),150,10, drawArea);
 
@@ -251,7 +252,8 @@ public class Wall {
             speedY = -rnd.nextInt(3);
         }while(speedY == 0);
 
-        ball.setSpeed(speedX,speedY);
+        ball.setXSpeed(speedX);
+        ball.setYSpeed(speedY);
         ballLost = false;
     }
 
