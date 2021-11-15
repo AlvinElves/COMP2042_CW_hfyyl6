@@ -31,16 +31,18 @@ public class DebugConsole extends JDialog implements WindowListener{
     private DebugPanel debugPanel;
     private GameBoard gameBoard;
     private Wall wall;
+    private Level level;
 
 
-    public DebugConsole(JFrame owner,Wall wall,GameBoard gameBoard){
+    public DebugConsole(JFrame owner,Wall wall, Level level,GameBoard gameBoard){
 
         this.wall = wall;
+        this.level = level;
         this.owner = owner;
         this.gameBoard = gameBoard;
         initialize();
 
-        debugPanel = new DebugPanel(wall);
+        debugPanel = new DebugPanel(wall, level);
         this.add(debugPanel,BorderLayout.CENTER);
 
 
