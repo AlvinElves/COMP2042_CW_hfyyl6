@@ -58,8 +58,6 @@ abstract public class Brick  {
 
     public abstract Shape getBrick();
 
-
-
     public Color getBorderColor(){
         return  border;
     }

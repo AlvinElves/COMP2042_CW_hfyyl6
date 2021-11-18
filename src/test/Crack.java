@@ -55,14 +55,12 @@ public class Crack {
                 end.setLocation(bounds.x + bounds.width, bounds.y + bounds.height);
                 Point tmp = makeRandomPoint(start, end, VERTICAL);
                 makeCrack(impact, tmp);
-
                 break;
             case RIGHT:
                 start.setLocation(bounds.getLocation());
                 end.setLocation(bounds.x, bounds.y + bounds.height);
                 tmp = makeRandomPoint(start, end, VERTICAL);
                 makeCrack(impact, tmp);
-
                 break;
             case UP:
                 start.setLocation(bounds.x, bounds.y + bounds.height);
@@ -75,9 +73,7 @@ public class Crack {
                 end.setLocation(bounds.x + bounds.width, bounds.y);
                 tmp = makeRandomPoint(start, end, HORIZONTAL);
                 makeCrack(impact, tmp);
-
                 break;
-
         }
     }
 
@@ -91,18 +87,16 @@ public class Crack {
         double w = (end.x - start.x) / (double) steps;
         double h = (end.y - start.y) / (double) steps;
 
-        int bound = crackDepth;
-        int jump = bound * 5;
 
         double x, y;
 
         for (int i = 1; i < steps; i++) {
 
             x = (i * w) + start.x;
-            y = (i * h) + start.y + randomInBounds(bound);
+            y = (i * h) + start.y + randomInBounds(crackDepth);
 
             if (inMiddle(i, CRACK_SECTIONS, steps))
-                y += jumps(jump, JUMP_PROBABILITY);
+                y += jumps(jump(), JUMP_PROBABILITY);
 
             path.lineTo(x, y);
 
@@ -110,6 +104,11 @@ public class Crack {
 
         path.lineTo(end.x, end.y);
         crack.append(path, true);
+    }
+
+    /** Instead of using variable, use a method to call it to enhance maintainability (REFACTORING) **/
+    public int jump (){
+        return crackDepth * 5;
     }
 
     private int randomInBounds(int bound) {
