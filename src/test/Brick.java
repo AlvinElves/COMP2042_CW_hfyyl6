@@ -49,7 +49,7 @@ abstract public class Brick  {
 
     protected abstract Shape makeBrickFace(Point pos,Dimension size);
 
-    public  boolean setImpact(Point2D point , int dir){
+    public boolean setImpact(Point2D point , int dir){
         if(broken)
             return false;
         impact();

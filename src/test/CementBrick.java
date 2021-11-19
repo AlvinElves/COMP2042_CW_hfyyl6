@@ -23,6 +23,8 @@ public class CementBrick extends Brick {
         brickFace = super.getBrickFace();
     }
 
+
+
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
