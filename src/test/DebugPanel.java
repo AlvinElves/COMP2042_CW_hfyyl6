@@ -45,8 +45,8 @@ public class DebugPanel extends JPanel {
 
         initialize();
 
-        skipLevel = makeButton("Skip Level",e -> level.nextLevel());
-        resetBalls = makeButton("Reset Balls",e -> wall.resetBallCount());
+        skipLevel = makeButton("Skip Level",e -> skipLevel());
+        resetBalls = makeButton("Reset Balls",e -> resetBalls());
 
         ballXSpeed = makeSlider(-4,4,e -> wall.setBallXSpeed(ballXSpeed.getValue()));
         ballYSpeed = makeSlider(-4,4,e -> wall.setBallYSpeed(ballYSpeed.getValue()));
@@ -57,6 +57,19 @@ public class DebugPanel extends JPanel {
         this.add(ballXSpeed);
         this.add(ballYSpeed);
 
+    }
+
+    private void skipLevel(){
+        if (level.hasLevel()) {
+            level.nextLevel();
+            wall.setTotalBrickBroken((level.getLevel() - 1) * wall.getBrickCount());
+        }
+        else
+            System.out.println("Reached the Final level");
+    }
+
+    private void resetBalls(){
+        wall.resetBallCount();
     }
 
     private void initialize(){

@@ -144,11 +144,17 @@ public class Level {
     }
 
     public void nextLevel(){
-        wall.setBricks(levels[level++]);
-        wall.setBrickCount(wall.getBricks().length);
+        if (hasLevel()) {
+            wall.setBricks(levels[level++]);
+            wall.setBrickCount(wall.getBricks().length);
+        }
     }
 
     public boolean hasLevel(){
         return level < levels.length;
+    }
+
+    public int getLevel(){
+        return level;
     }
 }

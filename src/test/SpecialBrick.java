@@ -35,10 +35,14 @@ public class SpecialBrick extends Brick{
             return false;
         else {
             impact();
-            if (Player.getBarReversed())
+            if (Player.getBarReversed()) {
                 Player.setBarReversed(false);
-            else
+                Player.setInnerColor(Color.GREEN);
+            }
+            else {
                 Player.setBarReversed(true);
+                Player.setInnerColor(Color.RED);
+            }
         }
         return super.isBroken();
     }

@@ -23,8 +23,8 @@ import java.awt.*;
 public class Player {
 
 
-    private static final Color BORDER_COLOR = Color.GREEN.darker().darker();
-    private static final Color INNER_COLOR = Color.GREEN;
+    private static Color BORDER_COLOR = Color.GREEN.darker().darker();
+    private static Color INNER_COLOR = Color.GREEN;
 
     private static final int DEF_MOVE_AMOUNT = 5;
 
@@ -44,6 +44,10 @@ public class Player {
         min = container.x + (width / 2);
         max = min + container.width - width;
 
+    }
+
+    public static void setInnerColor(Color color){
+        Player.INNER_COLOR = color;
     }
 
     public static Color getBorderColor() {

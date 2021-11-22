@@ -81,14 +81,17 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         gameTimer = new Timer(10,e ->{
             wall.move();
             wall.findImpacts();
-            message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
+            message = String.format("Bricks: %d Balls %d Total Bricks Broken %d",
+                    wall.getBrickCount(),wall.getBallCount(), wall.getTotalBrickBroken());
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
                     wall.wallReset();
+                    wall.setTotalBrickBroken(0);
                     message = "Game over";
                 }
                 wall.ballReset();
                 Player.setBarReversed(false);
+                Player.setInnerColor(Color.GREEN);
                 gameTimer.stop();
             }
             else if(wall.isDone()){
@@ -323,7 +326,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             message = "Restarting Game...";
             wall.ballReset();
             wall.wallReset();
+            wall.setTotalBrickBroken((level.getLevel() - 1) * wall.getBrickCount());
             Player.setBarReversed(false);
+            Player.setInnerColor(Color.GREEN);
             showPauseMenu = false;
             repaint();
         }

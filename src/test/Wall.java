@@ -35,6 +35,8 @@ public class Wall {
     private int ballCount;
     private boolean ballLost;
 
+    private int totalBrickBroken = 0;
+
     public Wall(Rectangle drawArea, Point ballPos){
 
         this.startPoint = new Point(ballPos);
@@ -80,7 +82,8 @@ public class Wall {
             /*for efficiency reverse is done into method impactWall
             * because for every brick program checks for horizontal and vertical impacts
             */
-            brickCount--;
+            setBrickCount(getBrickCount() - 1);
+            setTotalBrickBroken(getTotalBrickBroken() + 1);
         }
         else if(impactBorder()) {
             getBall().reverseX();
@@ -203,5 +206,13 @@ public class Wall {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public int getTotalBrickBroken() {
+        return totalBrickBroken;
+    }
+
+    public void setTotalBrickBroken(int totalBrickBroken) {
+        this.totalBrickBroken = totalBrickBroken;
     }
 }
