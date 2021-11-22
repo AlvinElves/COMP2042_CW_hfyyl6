@@ -30,9 +30,11 @@ public class Player {
 
     private Rectangle playerFace;
     private Point ballPoint;
-    private int moveAmount;
+    private static int moveAmount;
     private int min;
     private int max;
+
+    private static boolean barReversed = false;
 
 
     public Player(Point ballPoint,int width,int height,Rectangle container) {
@@ -77,6 +79,14 @@ public class Player {
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
+    public static void playerBarReversed(){
+        moveAmount = -moveAmount;
+        if (getBarReversed())
+            setBarReversed(false);
+        else
+            setBarReversed(true);
+    }
+
     public void playerBarStop(){
         moveAmount = 0;
     }
@@ -88,5 +98,13 @@ public class Player {
     public void playerBarMoveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+    }
+
+    public static boolean getBarReversed() {
+        return barReversed;
+    }
+
+    public static void setBarReversed(boolean barReversed) {
+        Player.barReversed = barReversed;
     }
 }

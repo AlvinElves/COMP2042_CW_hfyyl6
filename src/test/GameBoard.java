@@ -88,6 +88,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     message = "Game over";
                 }
                 wall.ballReset();
+                Player.setBarReversed(false);
                 gameTimer.stop();
             }
             else if(wall.isDone()){
@@ -273,10 +274,16 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
-                wall.getPlayer().playerBarMoveLeft();
+                if(Player.getBarReversed())
+                    wall.getPlayer().playerBarMoveRight();
+                else
+                    wall.getPlayer().playerBarMoveLeft();
                 break;
             case KeyEvent.VK_D:
-                wall.getPlayer().playerBarMoveRight();
+                if(Player.getBarReversed())
+                    wall.getPlayer().playerBarMoveLeft();
+                else
+                    wall.getPlayer().playerBarMoveRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 showPauseMenu = !showPauseMenu;
@@ -316,6 +323,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             message = "Restarting Game...";
             wall.ballReset();
             wall.wallReset();
+            Player.setBarReversed(false);
             showPauseMenu = false;
             repaint();
         }
