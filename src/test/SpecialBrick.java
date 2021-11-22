@@ -35,7 +35,10 @@ public class SpecialBrick extends Brick{
             return false;
         else {
             impact();
-            Player.playerBarReversed();
+            if (Player.getBarReversed())
+                Player.setBarReversed(false);
+            else
+                Player.setBarReversed(true);
         }
         return super.isBroken();
     }

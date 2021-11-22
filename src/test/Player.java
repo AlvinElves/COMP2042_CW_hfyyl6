@@ -79,14 +79,6 @@ public class Player {
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
-    public static void playerBarReversed(){
-        moveAmount = -moveAmount;
-        if (getBarReversed())
-            setBarReversed(false);
-        else
-            setBarReversed(true);
-    }
-
     public void playerBarStop(){
         moveAmount = 0;
     }
