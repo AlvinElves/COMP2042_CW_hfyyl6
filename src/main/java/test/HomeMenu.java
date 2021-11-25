@@ -66,6 +66,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private boolean highScoreClicked;
 
     private BufferedImage image;
+    private BufferedImage ballImage;
+    private BufferedImage brickImage;
+    private BufferedImage hourglassImage;
 
 
     public HomeMenu(GameFrame owner,Dimension area){
@@ -108,6 +111,18 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         drawContainer(g2d);
 
+        try {
+            ballImage = ImageIO.read(getClass().getResource("/Ball.jfif"));
+            brickImage = ImageIO.read(getClass().getResource("/Brick.jfif"));
+            hourglassImage = ImageIO.read(getClass().getResource("/Hourglass.jpg"));
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+
+        g2d.drawImage(ballImage, 10, 50, 40, 40, this);
+        g2d.drawImage(brickImage, 40, 120, 40, 40, this);
+        g2d.drawImage(hourglassImage, 100, 160, 40, 40, this);
+
         /*
         all the following method calls need a relative
         painting directly into the HomeMenu rectangle,
@@ -133,7 +148,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private void drawContainer(Graphics2D g2d){
         try {
-            image = ImageIO.read(new File("src/main/java/test/BackGroundImage.jpg"));
+            image = ImageIO.read(getClass().getResource("/BackGroundImage.jpg"));
         } catch (IOException e){
             throw new RuntimeException(e);
         }
