@@ -24,13 +24,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 
-public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
+public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener{
 
     private static final String GREETINGS = "Welcome to:";
     private static final String GAME_TITLE = "Brick Destroy";
@@ -119,9 +118,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             throw new RuntimeException(e);
         }
 
-        g2d.drawImage(ballImage, 10, 50, 40, 40, this);
-        g2d.drawImage(brickImage, 40, 120, 40, 40, this);
-        g2d.drawImage(hourglassImage, 100, 160, 40, 40, this);
+        g2d.drawImage(ballImage, 10, 50, 40, 45, this);
+        g2d.drawImage(brickImage, 40, 140, 40, 40, this);
+        g2d.drawImage(hourglassImage, 375, 160, 40, 40, this);
 
         /*
         all the following method calls need a relative
@@ -153,7 +152,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             throw new RuntimeException(e);
         }
 
-        g2d.drawImage(image, 0, 0, this);
+        g2d.drawImage(image, 0, 0, 450, 300, this);
     }
 
     private void drawText(Graphics2D g2d){
@@ -346,8 +345,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
             System.exit(0);
         }
         else if(instructionButton.contains(p)){
-            System.out.println("instruction button");
-            System.exit(0);
+            owner.enableInstructionPage();
+
         }
         else if(highScoreButton.contains(p)){
             System.out.println("high score button");
