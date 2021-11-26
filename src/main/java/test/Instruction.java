@@ -124,73 +124,55 @@ public class Instruction extends JComponent implements MouseListener, MouseMotio
 
         sX = (int)(menuFace.getWidth() - greetings1Rect.getWidth()) / 2;
         sY = (int)(menuFace.getHeight() / 5);
-
-        g2d.setColor(Color.BLUE);
-        g2d.setFont(greetingFont);
-        g2d.drawString(GREETING1_TEXT,sX,sY);
+        drawTextPlace(g2d,Color.BLUE, greetingFont,sX, sY, GREETING1_TEXT);
 
         sX = (int)(menuFace.getWidth() - greetings2Rect.getWidth()) / 2;
         sY +=(int) greetings2Rect.getHeight() * 1.1;
-
-        g2d.setColor(TEXT_COLOR);
-        g2d.setFont(instructionFont);
-        g2d.drawString(GREETING2_TEXT,sX,sY);
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, GREETING2_TEXT);
 
         sX = (int)(menuFace.getWidth() - goal1Rect.getWidth()) / 2;
         sY += (int) goal1Rect.getHeight() * 1.1;
-
-        g2d.setFont(instructionFont);
-        g2d.drawString(GOAL1_TEXT,sX,sY);
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, GOAL1_TEXT);
 
         sX = (int)(menuFace.getWidth() - goal2Rect.getWidth()) / 2;
         sY += (int) goal2Rect.getHeight() * 1.1;
-
-        g2d.setFont(instructionFont);
-        g2d.drawString(GOAL2_TEXT,sX,sY);
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, GOAL2_TEXT);
 
         sX = (int)(menuFace.getWidth() - brick1Rect.getWidth()) / 2;
         sY += (int) brick1Rect.getHeight() * 1.1;
-
-        g2d.setFont(instructionFont);
-        g2d.drawString(BRICK1_TEXT,sX,sY);
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, BRICK1_TEXT);
 
         sX = (int)(menuFace.getWidth() - brick2Rect.getWidth()) / 2;
         sY += (int) brick2Rect.getHeight() * 1.1;
-
-        g2d.setFont(instructionFont);
-        g2d.drawString(BRICK2_TEXT,sX,sY);
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, BRICK2_TEXT);
 
         sX = (int)(menuFace.getWidth() - brick3Rect.getWidth()) / 2;
         sY += (int) brick3Rect.getHeight() * 1.1;
-
-        g2d.setFont(instructionFont);
-        g2d.drawString(BRICK3_TEXT,sX,sY);
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, BRICK3_TEXT);
 
         sX = (int)(menuFace.getWidth() - brick4Rect.getWidth()) / 2;
         sY += (int) brick4Rect.getHeight() * 1.1;
-
-        g2d.setFont(instructionFont);
-        g2d.drawString(BRICK4_TEXT,sX,sY);
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, BRICK4_TEXT);
 
         sX = (int)(menuFace.getWidth() - instruction1Rect.getWidth()) / 2;
         sY += (int) instruction1Rect.getHeight() * 1.1;
-
-        g2d.setFont(instructionFont);
-        g2d.drawString(INSTRUCTION1_TEXT,sX,sY);
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, INSTRUCTION1_TEXT);
 
         sX = (int)(menuFace.getWidth() - instruction2Rect.getWidth()) / 2;
         sY += (int) instruction2Rect.getHeight() * 1.1;
-
-        g2d.setFont(instructionFont);
-        g2d.drawString(INSTRUCTION2_TEXT,sX,sY);
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, INSTRUCTION2_TEXT);
 
         sX = (int)(menuFace.getWidth() - greetings3Rect.getWidth()) / 2;
         sY += (int) greetings3Rect.getHeight() * 1.1;
+        drawTextPlace(g2d,TEXT_COLOR, instructionFont,sX, sY, GREETING3_TEXT);
 
-        g2d.setFont(instructionFont);
-        g2d.drawString(GREETING3_TEXT,sX,sY);
+    }
 
+    private void drawTextPlace(Graphics2D g2d, Color color, Font font, int x, int y, String text){
 
+        g2d.setColor(color);
+        g2d.setFont(font);
+        g2d.drawString(text,x,y);
     }
 
     private void drawInstructionButton(Graphics2D g2d){
