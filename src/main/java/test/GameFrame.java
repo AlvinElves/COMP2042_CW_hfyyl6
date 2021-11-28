@@ -31,7 +31,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private GameBoard gameBoard;
     private HomeMenu homeMenu;
-    private Instruction instruction;
+    private static Instruction instruction;
 
     private boolean gaming;
 
@@ -49,7 +49,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.add(homeMenu,BorderLayout.CENTER);
 
         this.setUndecorated(true);
-
 
     }
 
@@ -72,7 +71,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
     public void enableInstructionPage(){
-        instruction = new Instruction(this,new Dimension(450,300));
+        setInstruction(new Instruction(this, new Dimension(450,300)));
         this.dispose();
         this.remove(homeMenu);
         this.add(instruction,BorderLayout.CENTER);
@@ -119,5 +118,13 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         if(gaming)
             gameBoard.onLostFocus();
 
+    }
+
+    public static Instruction getInstruction(){
+        return instruction;
+    }
+
+    public static void setInstruction(Instruction instruction){
+        GameFrame.instruction = instruction;
     }
 }
