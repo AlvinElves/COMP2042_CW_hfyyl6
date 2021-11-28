@@ -1,12 +1,11 @@
 package test;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-public class Instruction extends JComponent{
+public class InstructionModel extends JComponent{
 
     private static String text;
 
@@ -27,7 +26,7 @@ public class Instruction extends JComponent{
 
     private static BufferedImage image;
 
-    public Instruction(GameFrame owner, Dimension area){
+    public InstructionModel(GameFrame owner, Dimension area){
 
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -39,7 +38,7 @@ public class Instruction extends JComponent{
 
 
 
-        Instruction.setMenuFace(new Rectangle(new Point(0,0),area));
+        InstructionModel.setMenuFace(new Rectangle(new Point(0,0),area));
 
         this.setPreferredSize(area);
 
@@ -59,7 +58,7 @@ public class Instruction extends JComponent{
     }
 
     public static void setColor(Color color){
-        Instruction.color = color;
+        InstructionModel.color = color;
     }
 
     public static Font getTextFont(){
@@ -67,7 +66,7 @@ public class Instruction extends JComponent{
     }
 
     public static void setTextFont(Font textFont){
-        Instruction.textFont = textFont;
+        InstructionModel.textFont = textFont;
     }
 
     public static BufferedImage getImage(){
@@ -75,7 +74,7 @@ public class Instruction extends JComponent{
     }
 
     public static void setImage(BufferedImage image){
-        Instruction.image = image;
+        InstructionModel.image = image;
     }
 
     public static Rectangle getMenuFace(){
@@ -83,7 +82,7 @@ public class Instruction extends JComponent{
     }
 
     public static void setMenuFace(Rectangle menuFace){
-        Instruction.menuFace = menuFace;
+        InstructionModel.menuFace = menuFace;
     }
 
     public static String getText(){
@@ -91,7 +90,7 @@ public class Instruction extends JComponent{
     }
 
     public static void setText(String text){
-        Instruction.text = text;
+        InstructionModel.text = text;
     }
 
     public static Rectangle getButton(){
@@ -99,7 +98,7 @@ public class Instruction extends JComponent{
     }
 
     public static void setButton(Rectangle button){
-        Instruction.button = button;
+        InstructionModel.button = button;
     }
 
     public static Rectangle2D getRect(){
@@ -107,7 +106,7 @@ public class Instruction extends JComponent{
     }
 
     public static void setRect(Rectangle2D rect){
-        Instruction.rect = rect;
+        InstructionModel.rect = rect;
     }
 
     public static boolean getButtonClicked(){
@@ -115,7 +114,7 @@ public class Instruction extends JComponent{
     }
 
     public static void setButtonClicked(boolean buttonClicked){
-        Instruction.buttonClicked = buttonClicked;
+        InstructionModel.buttonClicked = buttonClicked;
     }
 
     public static GameFrame getOwner(){
@@ -123,7 +122,7 @@ public class Instruction extends JComponent{
     }
 
     public static void setOwner(GameFrame owner){
-        Instruction.owner = owner;
+        InstructionModel.owner = owner;
     }
 
     public static BasicStroke getBorderStoke(){
@@ -131,6 +130,6 @@ public class Instruction extends JComponent{
     }
 
     public static void setBorderStoke(BasicStroke borderStoke){
-        Instruction.borderStoke = borderStoke;
+        InstructionModel.borderStoke = borderStoke;
     }
 }

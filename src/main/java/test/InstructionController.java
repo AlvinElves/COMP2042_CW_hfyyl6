@@ -10,25 +10,25 @@ public class InstructionController extends GameFrame implements MouseListener, M
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(Instruction.getButton().contains(p)){
-            Instruction.getOwner().backToHomePage();
+        if(InstructionModel.getButton().contains(p)){
+            InstructionModel.getOwner().backToHomePage();
         }
     }
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(Instruction.getButton().contains(p)){
-            Instruction.setButtonClicked(true);
-            GameFrame.getInstruction().repaint(Instruction.getButton().x,Instruction.getButton().y,Instruction.getButton().width+1,Instruction.getButton().height+1);
+        if(InstructionModel.getButton().contains(p)){
+            InstructionModel.setButtonClicked(true);
+            GameFrame.getInstruction().repaint(InstructionModel.getButton().x, InstructionModel.getButton().y, InstructionModel.getButton().width+1, InstructionModel.getButton().height+1);
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-        if(Instruction.getButtonClicked()) {
-            Instruction.setButtonClicked(false);
-            GameFrame.getInstruction().repaint(Instruction.getButton().x,Instruction.getButton().y,Instruction.getButton().width+1,Instruction.getButton().height+1);
+        if(InstructionModel.getButtonClicked()) {
+            InstructionModel.setButtonClicked(false);
+            GameFrame.getInstruction().repaint(InstructionModel.getButton().x, InstructionModel.getButton().y, InstructionModel.getButton().width+1, InstructionModel.getButton().height+1);
         }
     }
 
@@ -50,7 +50,7 @@ public class InstructionController extends GameFrame implements MouseListener, M
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
-        if(Instruction.getButton().contains(p))
+        if(InstructionModel.getButton().contains(p))
             GameFrame.getInstruction().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else
             GameFrame.getInstruction().setCursor(Cursor.getDefaultCursor());

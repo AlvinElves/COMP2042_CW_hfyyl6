@@ -19,19 +19,17 @@ package test;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
 
 
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
 
-    private GameBoard gameBoard;
-    private HomeMenu homeMenu;
-    private static Instruction instruction;
+    private static GameBoard gameBoard;
+    private static HomeMenu homeMenu;
+    private static InstructionModel instructionModel;
 
     private boolean gaming;
 
@@ -62,7 +60,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void backToHomePage(){
         this.dispose();
-        this.remove(instruction);
+        this.remove(instructionModel);
         this.add(homeMenu,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
@@ -71,10 +69,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
     public void enableInstructionPage(){
-        setInstruction(new Instruction(this, new Dimension(450,300)));
+        setInstruction(new InstructionModel(this, new Dimension(450,300)));
         this.dispose();
         this.remove(homeMenu);
-        this.add(instruction,BorderLayout.CENTER);
+        this.add(instructionModel,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
@@ -120,11 +118,29 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
-    public static Instruction getInstruction(){
-        return instruction;
+    public static InstructionModel getInstruction(){
+        return instructionModel;
     }
 
-    public static void setInstruction(Instruction instruction){
-        GameFrame.instruction = instruction;
+    public void setInstruction(InstructionModel instructionModel){
+        GameFrame.instructionModel = instructionModel;
     }
+
+    public static HomeMenu getHomeMenu(){
+        return homeMenu;
+    }
+
+    public void setHomeMenu(HomeMenu homeMenu){
+        GameFrame.homeMenu = homeMenu;
+    }
+
+    public static GameBoard getGameBoard(){
+        return gameBoard;
+    }
+
+    public void setGameBoard(GameBoard gameBoard){
+        GameFrame.gameBoard = gameBoard;
+    }
+
+
 }
