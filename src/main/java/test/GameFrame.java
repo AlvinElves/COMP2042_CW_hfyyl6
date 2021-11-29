@@ -27,8 +27,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
 
-    private static GameBoard gameBoard;
-    private static HomeMenu homeMenu;
+    private GameBoard gameBoard;
+    private HomeMenu homeMenu;
     private static InstructionModel instructionModel;
 
     private boolean gaming;
@@ -60,7 +60,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void backToHomePage(){
         this.dispose();
-        this.remove(instructionModel);
+        this.remove(getInstruction());
         this.add(homeMenu,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
@@ -72,7 +72,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         setInstruction(new InstructionModel(this, new Dimension(450,300)));
         this.dispose();
         this.remove(homeMenu);
-        this.add(instructionModel,BorderLayout.CENTER);
+        this.add(getInstruction(),BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
@@ -125,22 +125,4 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     public void setInstruction(InstructionModel instructionModel){
         GameFrame.instructionModel = instructionModel;
     }
-
-    public static HomeMenu getHomeMenu(){
-        return homeMenu;
-    }
-
-    public void setHomeMenu(HomeMenu homeMenu){
-        GameFrame.homeMenu = homeMenu;
-    }
-
-    public static GameBoard getGameBoard(){
-        return gameBoard;
-    }
-
-    public void setGameBoard(GameBoard gameBoard){
-        GameFrame.gameBoard = gameBoard;
-    }
-
-
 }
