@@ -23,12 +23,14 @@ import java.util.Random;
 
 
 public class Wall {
-    private Random rnd;
     private Rectangle area;
 
     private Brick[] bricks;
     private Ball ball;
     private Player player;
+
+    private int ballSpeedX;
+    private int ballSpeedY;
 
     private Point startPoint;
     private int brickCount;
@@ -43,20 +45,12 @@ public class Wall {
 
         ballCount = 3;
         ballLost = false;
-
-        rnd = new Random();
+        ballSpeedX = 4;
+        ballSpeedY = -4;
 
         makeBall(ballPos);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
-
-        getBall().setXSpeed(speedX);
-        getBall().setYSpeed(speedY);
+        getBall().setXSpeed(ballSpeedX);
+        getBall().setYSpeed(ballSpeedY);
 
         setPlayer(new Player((Point) ballPos.clone(),150,10, drawArea));
 
@@ -136,16 +130,8 @@ public class Wall {
     public void ballReset(){
         getPlayer().playerBarMoveTo(startPoint);
         getBall().moveTo(startPoint);
-        int speedX,speedY;
-        do{
-            speedX = rnd.nextInt(5) - 2;
-        }while(speedX == 0);
-        do{
-            speedY = -rnd.nextInt(3);
-        }while(speedY == 0);
-
-        getBall().setXSpeed(speedX);
-        getBall().setYSpeed(speedY);
+        getBall().setXSpeed(ballSpeedX);
+        getBall().setYSpeed(ballSpeedY);
         ballLost = false;
     }
 
