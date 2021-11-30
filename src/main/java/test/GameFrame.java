@@ -102,6 +102,16 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    public void enableHighScorePageFromGameBoard(){
+        this.dispose();
+        this.remove(gameBoard);
+        this.add(highScore,BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        /*to avoid problems with graphics focus controller is added here*/
+        this.addWindowFocusListener(this);
+    }
+
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenu);
