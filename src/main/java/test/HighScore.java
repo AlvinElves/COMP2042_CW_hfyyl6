@@ -23,6 +23,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     private Font buttonFont;
     private Font greetingFont;
     private Font textFont;
+    private Font scoreFont;
     private BasicStroke borderStoke;
     private BufferedImage image;
     private boolean buttonClicked;
@@ -30,7 +31,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     private String currentScoreText;
 
 
-    private static int i, j, line;
+    private static int i, j;
     private static int[][] score = new int[8][3];
 
 
@@ -55,6 +56,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         buttonFont = new Font("Helvetica",Font.PLAIN,20);
         greetingFont = new Font("Serif",Font.BOLD,50);
         textFont = new Font("Serif",Font.PLAIN,15);
+        scoreFont = new Font("Serif",Font.PLAIN,20);
 
         fileRead();
 
@@ -152,7 +154,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         FontRenderContext frc = g2d.getFontRenderContext();
 
         i=0;
-        scoreText = String.format("%dBricks %dMinutes %dSeconds", getScore()[i][0], getScore()[i][1], getScore()[i][2]);
+        scoreText = String.format("#%02d %dBricks %dMinutes %dSeconds", i+1, getScore()[i][0], getScore()[i][1], getScore()[i][2]);
 
         Rectangle2D greetingsRect = greetingFont.getStringBounds("HIGH SCORE",frc);
         Rectangle2D scoreRect = textFont.getStringBounds(scoreText,frc);
@@ -165,17 +167,25 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         g2d.setFont(greetingFont);
         g2d.drawString("HIGH SCORE",sX,sY);
 
+        sY += (int) scoreRect.getHeight() * 0.5;
+
         g2d.setFont(textFont);
         g2d.setColor(Color.WHITE);
         while(getScore()[i][0] != 0 && getScore()[i][1] != 0 && getScore()[i][2] != 0) {
             sX = (int)(menuFace.getWidth() - scoreRect.getWidth()) / 2;
             sY += (int) scoreRect.getHeight() * 1.1;
-            scoreText = String.format("%02dBricks %02dMinutes %02dSeconds", getScore()[i][0], getScore()[i][1], getScore()[i][2]);
+            scoreText = String.format("#%02d %02dBricks %02dMinutes %02dSeconds", i+1, getScore()[i][0], getScore()[i][1], getScore()[i][2]);
             g2d.drawString(scoreText,sX,sY);
             i++;
         }
 
-
+        sX = (int) ((menuFace.width - backButton.width) / 2 * 0.2);
+        sY = (int) ((menuFace.height - backButton.height) * 0.8 * 1.1);
+        scoreText = String.format("Current Score: %02dBricks %02dMinutes %02dSeconds", Wall.getTotalBrickBroken()
+                , GameTimer.getMinutes(), GameTimer.getSeconds());
+        g2d.setFont(scoreFont);
+        g2d.setColor(Color.CYAN);
+        g2d.drawString(scoreText,sX,sY);
 
     }
 
