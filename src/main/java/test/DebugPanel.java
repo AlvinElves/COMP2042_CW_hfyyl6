@@ -37,11 +37,13 @@ public class DebugPanel extends JPanel {
 
     private Wall wall;
     private Level level;
+    private GameTimer displayTimer;
 
-    public DebugPanel(Wall wall, Level level){
+    public DebugPanel(Wall wall, Level level, GameTimer displayTimer){
 
         this.wall = wall;
         this.level = level;
+        this.displayTimer = displayTimer;
 
         initialize();
 
@@ -62,9 +64,9 @@ public class DebugPanel extends JPanel {
     private void skipLevel(){
         if (level.hasLevel()) {
             level.nextLevel();
-            Wall.setTotalBrickBroken((level.getLevel() - 1) * wall.getBrickCount());
-            GameTimer.setTempSeconds(GameTimer.getSeconds());
-            GameTimer.setTempMinutes(GameTimer.getMinutes());
+            wall.setTotalBrickBroken((level.getLevel() - 1) * wall.getBrickCount());
+            displayTimer.setTempSeconds(displayTimer.getSeconds());
+            displayTimer.setTempMinutes(displayTimer.getMinutes());
         }
         else
             System.out.println("Reached the Final level");

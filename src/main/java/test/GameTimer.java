@@ -5,11 +5,11 @@ import java.util.Timer;
 
 public class GameTimer {
 
-    private static int seconds;
-    private static int minutes;
-    private static int tempSeconds;
-    private static int tempMinutes;
-    private static boolean gameRunning = false;
+    private int seconds;
+    private int minutes;
+    private int tempSeconds;
+    private int tempMinutes;
+    private boolean gameRunning = false;
 
     public GameTimer() {
         Timer timer = new Timer();
@@ -27,49 +27,49 @@ public class GameTimer {
         }, 0, 1000);
     }
 
-    public static void resetGame(){
+    public void resetGame(){
         setTempSeconds(0);
         setSeconds(0);
         setMinutes(0);
         setTempMinutes(0);
         setGameRunning(false);
     }
-    public static int getTempSeconds(){
+    public int getTempSeconds(){
         return tempSeconds;
     }
 
-    public static void setTempSeconds(int seconds){
-        GameTimer.tempSeconds = seconds;
+    public void setTempSeconds(int seconds){
+        this.tempSeconds = seconds;
     }
-    public static int getSeconds() {
+    public int getSeconds() {
         return seconds;
     }
 
-    public static void setSeconds(int seconds) {
-        GameTimer.seconds = seconds;
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
     }
 
-    public static boolean isGameRunning() {
+    public boolean isGameRunning() {
         return gameRunning;
     }
 
-    public static void setGameRunning(boolean gameRunning) {
-        GameTimer.gameRunning = gameRunning;
+    public void setGameRunning(boolean gameRunning) {
+        this.gameRunning = gameRunning;
     }
 
-    public static int getMinutes() {
+    public int getMinutes() {
         return minutes;
     }
 
-    public static void setMinutes(int minutes) {
-        GameTimer.minutes = minutes;
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 
-    public static int getTempMinutes() {
+    public int getTempMinutes() {
         return tempMinutes;
     }
 
-    public static void setTempMinutes(int tempMinutes) {
-        GameTimer.tempMinutes = tempMinutes;
+    public void setTempMinutes(int tempMinutes) {
+        this.tempMinutes = tempMinutes;
     }
 }

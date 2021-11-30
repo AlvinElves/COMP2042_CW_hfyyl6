@@ -37,7 +37,7 @@ public class Wall {
     private int ballCount;
     private boolean ballLost;
 
-    private static int totalBrickBroken;
+    private int totalBrickBroken = 0;
 
     public Wall(Rectangle drawArea, Point ballPos){
 
@@ -74,8 +74,8 @@ public class Wall {
         }
         else if(impactWall()){
             /*for efficiency reverse is done into method impactWall
-            * because for every brick program checks for horizontal and vertical impacts
-            */
+             * because for every brick program checks for horizontal and vertical impacts
+             */
             setBrickCount(getBrickCount() - 1);
             setTotalBrickBroken(getTotalBrickBroken() + 1);
         }
@@ -194,11 +194,11 @@ public class Wall {
         this.player = player;
     }
 
-    public static int getTotalBrickBroken() {
+    public int getTotalBrickBroken() {
         return totalBrickBroken;
     }
 
-    public static void setTotalBrickBroken(int totalBrickBroken) {
-        Wall.totalBrickBroken = totalBrickBroken;
+    public void setTotalBrickBroken(int totalBrickBroken) {
+        this.totalBrickBroken = totalBrickBroken;
     }
 }
