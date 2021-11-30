@@ -92,7 +92,7 @@ public class InstructionView implements ImageObserver {
                 drawTextCoordX(InstructionModel.getRect()), drawTextCoordY(InstructionModel.getRect(), 5.1),
                 InstructionModel.getText());
 
-        InstructionModel.setText("ConcreteBrick has a strength of 2 and 0.7 chance of breaking, and lastly");
+        InstructionModel.setText("SlowBrick will slow the player for 4 seconds, and lastly");
         InstructionModel.setRect(InstructionModel.getTextFont().getStringBounds(InstructionModel.getText(),g2d.getFontRenderContext()));
 
         drawTextPlace(g2d, InstructionModel.getColor(), InstructionModel.getTextFont(),

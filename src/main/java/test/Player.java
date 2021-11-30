@@ -26,7 +26,7 @@ public class Player {
     private static Color BORDER_COLOR = Color.GREEN.darker().darker();
     private static Color INNER_COLOR = Color.GREEN;
 
-    private static final int DEF_MOVE_AMOUNT = 5;
+    private static int DEF_MOVE_AMOUNT;
 
     private Rectangle playerFace;
     private Point ballPoint;
@@ -43,6 +43,7 @@ public class Player {
         playerFace = makeRectangle(width, height);
         min = container.x + (width / 2);
         max = min + container.width - width;
+        setDefMoveAmount(5);
 
     }
 
@@ -56,6 +57,14 @@ public class Player {
 
     public static Color getInnerColor() {
         return INNER_COLOR;
+    }
+
+    public static int getDefMoveAmount() {
+        return DEF_MOVE_AMOUNT;
+    }
+
+    public static void setDefMoveAmount(int DEF_MOVE_AMOUNT){
+        Player.DEF_MOVE_AMOUNT = DEF_MOVE_AMOUNT;
     }
 
     private Rectangle makeRectangle(int width,int height){
@@ -76,11 +85,11 @@ public class Player {
     }
 
     public void playerBarMoveLeft(){
-        moveAmount = -DEF_MOVE_AMOUNT;
+        moveAmount = -getDefMoveAmount();
     }
 
     public void playerBarMoveRight(){
-        moveAmount = DEF_MOVE_AMOUNT;
+        moveAmount = getDefMoveAmount();
     }
 
     public void playerBarStop(){

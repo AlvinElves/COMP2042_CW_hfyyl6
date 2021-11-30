@@ -9,7 +9,7 @@ public class Level {
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
-    private static final int CONCRETE = 4;
+    private static final int SLOW = 4;
     private static final int SPECIAL = 5;
 
     private Brick[][] levels;
@@ -117,7 +117,7 @@ public class Level {
         tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
         tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
-        tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CONCRETE,SPECIAL);
+        tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,SLOW,SPECIAL);
         return tmp;
     }
 
@@ -134,8 +134,8 @@ public class Level {
             case CEMENT:
                 out = brickFactory.getBrickType("CEMENT", point, size);
                 break;
-            case CONCRETE:
-                out = brickFactory.getBrickType("CONCRETE", point, size);
+            case SLOW:
+                out = brickFactory.getBrickType("SLOW", point, size);
                 break;
             case SPECIAL:
                 out = brickFactory.getBrickType("SPECIAL", point, size);
