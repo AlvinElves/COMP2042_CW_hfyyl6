@@ -75,11 +75,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         message = "";
         message2 = "";
         wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),new Point(300,430));
-        level = new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2, wall);
+        level = new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3, 3, wall);
         displayTimer = new GameTimer();
         debugConsole = new DebugConsole(owner,wall,level, displayTimer, this);
-        wall.setTotalBrickBroken(0);
-        displayTimer.resetGame();
         //initialize the first level
         level.nextLevel();
 
@@ -97,6 +95,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     message2 = String.format("Score is %d Bricks at the time of %02dm %02ds",
                             wall.getTotalBrickBroken(), displayTimer.getMinutes(), displayTimer.getSeconds());
                     displayTimer.setGameRunning(false);
+                    HomeMenu.getOwner().enableHighScorePageFromGameBoard();
+                    wall.setTotalBrickBroken(0);
+                    displayTimer.resetGame();
                 }
                 displayTimer.setGameRunning(false);
                 wall.ballReset();
@@ -121,6 +122,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                             wall.getTotalBrickBroken(), displayTimer.getMinutes(), displayTimer.getSeconds());
                     displayTimer.setGameRunning(false);
                     gameTimer.stop();
+                    HomeMenu.getOwner().enableHighScorePageFromGameBoard();
+                    wall.setTotalBrickBroken(0);
+                    displayTimer.resetGame();
                 }
             }
 
