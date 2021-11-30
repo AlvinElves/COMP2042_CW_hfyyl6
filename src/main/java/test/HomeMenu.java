@@ -349,8 +349,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         }
         else if(highScoreButton.contains(p)){
-            System.out.println("high score button");
-            System.exit(0);
+            owner.enableHighScorePage();
         }
     }
 

@@ -30,6 +30,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private GameBoard gameBoard;
     private HomeMenu homeMenu;
     private static InstructionModel instructionModel;
+    private HighScore highScore;
 
     private boolean gaming;
 
@@ -43,6 +44,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gameBoard = new GameBoard(this);
 
         homeMenu = new HomeMenu(this,new Dimension(450,300));
+
+        highScore = new HighScore(this,new Dimension(450,300));
 
         this.add(homeMenu,BorderLayout.CENTER);
 
@@ -68,11 +71,31 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    public void backToHomePageFromHighScore(){
+        this.dispose();
+        this.remove(highScore);
+        this.add(homeMenu,BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        /*to avoid problems with graphics focus controller is added here*/
+        this.addWindowFocusListener(this);
+    }
+
     public void enableInstructionPage(){
         setInstruction(new InstructionModel(this, new Dimension(450,300)));
         this.dispose();
         this.remove(homeMenu);
         this.add(getInstruction(),BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        /*to avoid problems with graphics focus controller is added here*/
+        this.addWindowFocusListener(this);
+    }
+
+    public void enableHighScorePage(){
+        this.dispose();
+        this.remove(homeMenu);
+        this.add(highScore,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
         /*to avoid problems with graphics focus controller is added here*/
