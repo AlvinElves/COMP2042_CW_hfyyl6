@@ -32,7 +32,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
 
     private static int i, j;
-    private static int[][] score = new int[8][3];
+    public static int[][] score;
 
 
     public HighScore(GameFrame owner, Dimension area){
@@ -53,10 +53,12 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
         borderStoke = new BasicStroke(2);
 
+        score = new int[8][3];
+
         buttonFont = new Font("Helvetica",Font.PLAIN,20);
         greetingFont = new Font("Serif",Font.BOLD,50);
-        textFont = new Font("Serif",Font.PLAIN,15);
-        scoreFont = new Font("Serif",Font.PLAIN,20);
+        textFont = new Font("SansSerif",Font.PLAIN,15);
+        scoreFont = new Font("SansSerif",Font.PLAIN,20);
 
         fileRead();
 
@@ -70,7 +72,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
             myReader.nextLine();
             while (myReader.hasNextLine()){
                 for (j = 0; j < 3; j++){
-                    getScore()[i][j] = myReader.nextInt();
+                    score[i][j] = myReader.nextInt();
                 }
                 i++;
             }
@@ -82,13 +84,14 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     }
 
     public static void fileWrite(){
-        i = 0;
         try {
             FileWriter myWriter = new FileWriter("resources/HighScores.txt");
             myWriter.write("Bricks\tMinutes\tSeconds");
-            while(getScore()[i][0] != 0 && getScore()[i][1] != 0 && getScore()[i][2] != 0) {
-                myWriter.write("\n" + getScore()[i][0] + "\t" + getScore()[i][1] + "\t" + getScore()[i][2]);
-                i++;
+            for(i = 0; i < 7; i++){
+                if(score[i][0] == 0 && score[i][1] == 0 && score[i][2] == 0){
+                    break;
+                }
+                myWriter.write("\n" + score[i][0] + "\t" + score[i][1] + "\t" + score[i][2]);
             }
             myWriter.close();
         } catch (IOException e) {
@@ -97,12 +100,29 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
     }
 
-    public static int[][] getScore() {
-        return score;
-    }
+    public static void sortingAfterGame(){
+        if(score[6][0] < Wall.getTotalBrickBroken()){
+            score[6][0] = Wall.getTotalBrickBroken();
+            score[6][1] = GameTimer.getMinutes();
+            score[6][2] = GameTimer.getSeconds();
+        }
 
-    public static void setScore(int[][] score) {
-        HighScore.score = score;
+        for (i = 0; i < 7; i++) {
+            for (int j = i + 1; j < 7; j++) {
+                if (score[j][0] > score[i][0]) {
+                    int temp1 = score[i][0];
+                    int temp2 = score[i][1];
+                    int temp3 = score[i][2];
+                    score[i][0] = score[j][0];
+                    score[i][1] = score[j][1];
+                    score[i][2] = score[j][2];
+                    score[j][0] = temp1;
+                    score[j][1] = temp2;
+                    score[j][2] = temp3;
+                }
+            }
+        }
+        fileWrite();
     }
 
     public void paint(Graphics g){
@@ -153,8 +173,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        i=0;
-        scoreText = String.format("#%02d %dBricks %dMinutes %dSeconds", i+1, getScore()[i][0], getScore()[i][1], getScore()[i][2]);
+        scoreText = String.format("#%02d %dBricks %dMinutes %dSeconds", i+1, score[i][0], score[i][1], score[i][2]);
 
         Rectangle2D greetingsRect = greetingFont.getStringBounds("HIGH SCORE",frc);
         Rectangle2D scoreRect = textFont.getStringBounds(scoreText,frc);
@@ -171,12 +190,15 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
         g2d.setFont(textFont);
         g2d.setColor(Color.WHITE);
-        while(getScore()[i][0] != 0 && getScore()[i][1] != 0 && getScore()[i][2] != 0) {
+        for(i = 0; i < 7; i++){
+            if(score[i][0] == 0 && score[i][1] == 0 && score[i][2] == 0){
+                break;
+            }
             sX = (int)(menuFace.getWidth() - scoreRect.getWidth()) / 2;
             sY += (int) scoreRect.getHeight() * 1.1;
-            scoreText = String.format("#%02d %02dBricks %02dMinutes %02dSeconds", i+1, getScore()[i][0], getScore()[i][1], getScore()[i][2]);
+            scoreText = String.format("#%02d %02dBricks %02dMinutes %02dSeconds", i+1,
+                    score[i][0], score[i][1], score[i][2]);
             g2d.drawString(scoreText,sX,sY);
-            i++;
         }
 
         sX = (int) ((menuFace.width - backButton.width) / 2 * 0.2);
