@@ -57,7 +57,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Font creditsFont;
     private Font buttonFont;
 
-    private GameFrame owner;
+    private static GameFrame owner;
 
     private boolean startClicked;
     private boolean menuClicked;
@@ -78,7 +78,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
 
-        this.owner = owner;
+        setOwner(owner);
 
 
 
@@ -98,6 +98,14 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         creditsFont = new Font("Serif",Font.PLAIN,15);
         buttonFont = new Font("Helvetica",Font.PLAIN,23);
 
+    }
+
+    public static GameFrame getOwner() {
+        return owner;
+    }
+
+    public static void setOwner(GameFrame owner) {
+        HomeMenu.owner = owner;
     }
 
 
@@ -337,19 +345,18 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
         if(startButton.contains(p)){
-           owner.enableGameBoard();
-
+           getOwner().enableGameBoard();
         }
         else if(menuButton.contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
             System.exit(0);
         }
         else if(instructionButton.contains(p)){
-            owner.enableInstructionPage();
+            getOwner().enableInstructionPage();
 
         }
         else if(highScoreButton.contains(p)){
-            owner.enableHighScorePage();
+            getOwner().enableHighScorePage();
         }
     }
 

@@ -37,7 +37,7 @@ public class Wall {
     private int ballCount;
     private boolean ballLost;
 
-    private int totalBrickBroken = 0;
+    private static int totalBrickBroken;
 
     public Wall(Rectangle drawArea, Point ballPos){
 
@@ -194,11 +194,11 @@ public class Wall {
         this.player = player;
     }
 
-    public int getTotalBrickBroken() {
+    public static int getTotalBrickBroken() {
         return totalBrickBroken;
     }
 
-    public void setTotalBrickBroken(int totalBrickBroken) {
-        this.totalBrickBroken = totalBrickBroken;
+    public static void setTotalBrickBroken(int totalBrickBroken) {
+        Wall.totalBrickBroken = totalBrickBroken;
     }
 }
