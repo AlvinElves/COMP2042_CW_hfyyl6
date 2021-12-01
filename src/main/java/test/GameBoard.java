@@ -77,29 +77,25 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),new Point(300,430));
         level = new Level(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3, 3, wall);
         displayTimer = new GameTimer();
-        debugConsole = new DebugConsole(owner,wall,level, displayTimer, this);
+        debugConsole = new DebugConsole(owner, wall, level, displayTimer, this);
         //initialize the first level
         level.nextLevel();
 
         gameTimer = new Timer(10,e ->{
             wall.move();
             wall.findImpacts();
-            displayTimer.setGameRunning(true);
-            message = String.format("Bricks: %d Balls: %d", wall.getBrickCount(),wall.getBallCount());
-            message2 = String.format("Total Bricks Broken: %d Timer: %02dm %02ds", wall.getTotalBrickBroken(),
-                    displayTimer.getMinutes(), displayTimer.getSeconds());
+            GameTimer.setGameRunning(true);
+            message = String.format("Bricks: %d Balls: %d", wall.getBrickCount(), wall.getBallCount());
+            message2 = String.format("Total Bricks Broken: %d Timer: %02dm %02ds", Wall.getTotalBrickBroken(),
+                    GameTimer.getMinutes(), GameTimer.getSeconds());
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
                     wall.wallReset();
-                    message = "Game over. Your";
-                    message2 = String.format("Score is %d Bricks at the time of %02dm %02ds",
-                            wall.getTotalBrickBroken(), displayTimer.getMinutes(), displayTimer.getSeconds());
-                    displayTimer.setGameRunning(false);
+                    GameTimer.setGameRunning(false);
+                    HighScore.sortingAfterGame();
                     HomeMenu.getOwner().enableHighScorePageFromGameBoard();
-                    wall.setTotalBrickBroken(0);
-                    displayTimer.resetGame();
                 }
-                displayTimer.setGameRunning(false);
+                GameTimer.setGameRunning(false);
                 wall.ballReset();
                 Player.setBarReversed(false);
                 Player.setInnerColor(Color.GREEN);
@@ -108,8 +104,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             else if(wall.isDone()){
                 if(level.hasLevel()){
                     message = "Go to Next Level";
-                    displayTimer.setTempSeconds(displayTimer.getSeconds());
-                    displayTimer.setTempMinutes(displayTimer.getMinutes());
+                    GameTimer.setTempSeconds(GameTimer.getSeconds());
+                    GameTimer.setTempMinutes(GameTimer.getMinutes());
                     message2 = "";
                     gameTimer.stop();
                     wall.ballReset();
@@ -117,14 +113,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     level.nextLevel();
                 }
                 else{
-                    message = "ALL WALLS DESTROYED";
-                    message2 = String.format("Your Score is %d Bricks at the time of %02dm %02ds",
-                            wall.getTotalBrickBroken(), displayTimer.getMinutes(), displayTimer.getSeconds());
-                    displayTimer.setGameRunning(false);
+                    GameTimer.setGameRunning(false);
                     gameTimer.stop();
+                    HighScore.sortingAfterGame();
                     HomeMenu.getOwner().enableHighScorePageFromGameBoard();
-                    wall.setTotalBrickBroken(0);
-                    displayTimer.resetGame();
                 }
             }
 
@@ -132,7 +124,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         });
 
     }
-
 
 
     private void initialize(){
@@ -311,7 +302,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 break;
             case KeyEvent.VK_ESCAPE:
                 showPauseMenu = !showPauseMenu;
-                displayTimer.setGameRunning(false);
+                GameTimer.setGameRunning(false);
                 repaint();
                 gameTimer.stop();
                 break;
@@ -319,7 +310,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 if(!showPauseMenu)
                     if(gameTimer.isRunning()) {
                         gameTimer.stop();
-                        displayTimer.setGameRunning(false);
+                        GameTimer.setGameRunning(false);
                     }
                     else
                         gameTimer.start();
@@ -351,16 +342,16 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             message2 = "";
             wall.ballReset();
             wall.wallReset();
-            displayTimer.setSeconds(displayTimer.getTempSeconds());
-            displayTimer.setMinutes(displayTimer.getTempMinutes());
-            wall.setTotalBrickBroken((level.getLevel() - 1) * wall.getBrickCount());
+            GameTimer.setSeconds(GameTimer.getTempSeconds());
+            GameTimer.setMinutes(GameTimer.getTempMinutes());
+            Wall.setTotalBrickBroken((level.getLevel() - 1) * wall.getBrickCount());
             Player.setBarReversed(false);
             Player.setInnerColor(Color.GREEN);
             showPauseMenu = false;
             repaint();
         }
         else if(exitButtonRect.contains(p)){
-            displayTimer.resetGame();
+            GameTimer.resetGame();
             System.exit(0);
         }
 
@@ -407,7 +398,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     public void onLostFocus(){
         gameTimer.stop();
-        displayTimer.setGameRunning(false);
+        GameTimer.setGameRunning(false);
         message = "Focus Lost";
         message2 = "";
         repaint();
