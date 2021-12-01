@@ -122,6 +122,39 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
                 }
             }
         }
+
+        for (i = 0; i < 7; i++) {
+            for (int j = i + 1; j < 7; j++) {
+                if (score[j][0] == score[i][0] && score[j][1] < score[i][1]) {
+                    int temp1 = score[i][0];
+                    int temp2 = score[i][1];
+                    int temp3 = score[i][2];
+                    score[i][0] = score[j][0];
+                    score[i][1] = score[j][1];
+                    score[i][2] = score[j][2];
+                    score[j][0] = temp1;
+                    score[j][1] = temp2;
+                    score[j][2] = temp3;
+                }
+            }
+        }
+
+        for (i = 0; i < 7; i++) {
+            for (int j = i + 1; j < 7; j++) {
+                if (score[j][0] == score[i][0] && score[j][1] == score[i][1] && score[j][2] < score[i][2]) {
+                    int temp1 = score[i][0];
+                    int temp2 = score[i][1];
+                    int temp3 = score[i][2];
+                    score[i][0] = score[j][0];
+                    score[i][1] = score[j][1];
+                    score[i][2] = score[j][2];
+                    score[j][0] = temp1;
+                    score[j][1] = temp2;
+                    score[j][2] = temp3;
+                }
+            }
+        }
+
         fileWrite();
     }
 
