@@ -28,7 +28,6 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     private BufferedImage image;
     private boolean buttonClicked;
     private String scoreText;
-    private String currentScoreText;
 
 
     private static int i, j;
@@ -101,6 +100,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     }
 
     public static void sortingAfterGame(){
+        int temp1, temp2, temp3;
         if(score[6][0] < Wall.getTotalBrickBroken()){
             score[6][0] = Wall.getTotalBrickBroken();
             score[6][1] = GameTimer.getMinutes();
@@ -110,9 +110,9 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         for (i = 0; i < 7; i++) {
             for (int j = i + 1; j < 7; j++) {
                 if (score[j][0] > score[i][0]) {
-                    int temp1 = score[i][0];
-                    int temp2 = score[i][1];
-                    int temp3 = score[i][2];
+                    temp1 = score[i][0];
+                    temp2 = score[i][1];
+                    temp3 = score[i][2];
                     score[i][0] = score[j][0];
                     score[i][1] = score[j][1];
                     score[i][2] = score[j][2];
@@ -126,9 +126,9 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         for (i = 0; i < 7; i++) {
             for (int j = i + 1; j < 7; j++) {
                 if (score[j][0] == score[i][0] && score[j][1] < score[i][1]) {
-                    int temp1 = score[i][0];
-                    int temp2 = score[i][1];
-                    int temp3 = score[i][2];
+                    temp1 = score[i][0];
+                    temp2 = score[i][1];
+                    temp3 = score[i][2];
                     score[i][0] = score[j][0];
                     score[i][1] = score[j][1];
                     score[i][2] = score[j][2];
@@ -142,9 +142,9 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         for (i = 0; i < 7; i++) {
             for (int j = i + 1; j < 7; j++) {
                 if (score[j][0] == score[i][0] && score[j][1] == score[i][1] && score[j][2] < score[i][2]) {
-                    int temp1 = score[i][0];
-                    int temp2 = score[i][1];
-                    int temp3 = score[i][2];
+                    temp1 = score[i][0];
+                    temp2 = score[i][1];
+                    temp3 = score[i][2];
                     score[i][0] = score[j][0];
                     score[i][1] = score[j][1];
                     score[i][2] = score[j][2];
