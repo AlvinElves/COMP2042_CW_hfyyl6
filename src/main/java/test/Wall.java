@@ -37,6 +37,8 @@ public class Wall {
     private int ballCount;
     private boolean ballLost;
 
+    private BallFactory ballFactory;
+
     private static int totalBrickBroken = 0;
 
     public Wall(Rectangle drawArea, Point ballPos){
@@ -60,7 +62,8 @@ public class Wall {
     }
 
     private void makeBall(Point2D ballPos){
-        setBall(new RubberBall(ballPos));
+        ballFactory = new BallFactory();
+        setBall(ballFactory.getBallType("RUBBER", ballPos));
     }
 
     public void move(){
