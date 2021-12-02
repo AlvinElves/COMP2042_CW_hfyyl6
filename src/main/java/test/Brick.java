@@ -11,15 +11,15 @@ import java.util.Random;
  */
 abstract public class Brick  {
 
-    public static final int MIN_CRACK = 1;
-    public static final int DEF_CRACK_DEPTH = 1;
-    public static final int DEF_STEPS = 35;
+    private static int MIN_CRACK;
+    private static int DEF_CRACK_DEPTH;
+    private static int DEF_STEPS;
 
 
-    public static final int UP_IMPACT = 100;
-    public static final int DOWN_IMPACT = 200;
-    public static final int LEFT_IMPACT = 300;
-    public static final int RIGHT_IMPACT = 400;
+    private static int UP_IMPACT;
+    private static int DOWN_IMPACT;
+    private static int LEFT_IMPACT;
+    private static int RIGHT_IMPACT;
 
 
     private static Random rnd;
@@ -37,6 +37,14 @@ abstract public class Brick  {
 
 
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
+        setMinCrack(1);
+        setDefCrackDepth(1);
+        setDefSteps(35);
+        setUpImpact(100);
+        setDownImpact(200);
+        setLeftImpact(300);
+        setRightImpact(400);
+
         setRnd(new Random());
         broken = false;
         this.name = name;
@@ -45,6 +53,38 @@ abstract public class Brick  {
         this.inner = inner;
         this.fullStrength = this.strength = strength;
 
+    }
+
+    public static int getUpImpact() {
+        return UP_IMPACT;
+    }
+
+    public static void setUpImpact(int upImpact) {
+        UP_IMPACT = upImpact;
+    }
+
+    public static int getDownImpact() {
+        return DOWN_IMPACT;
+    }
+
+    public static void setDownImpact(int downImpact) {
+        DOWN_IMPACT = downImpact;
+    }
+
+    public static int getLeftImpact() {
+        return LEFT_IMPACT;
+    }
+
+    public static void setLeftImpact(int leftImpact) {
+        LEFT_IMPACT = leftImpact;
+    }
+
+    public static int getRightImpact() {
+        return RIGHT_IMPACT;
+    }
+
+    public static void setRightImpact(int rightImpact) {
+        RIGHT_IMPACT = rightImpact;
     }
 
     protected abstract Shape makeBrickFace(Point pos,Dimension size);
@@ -72,13 +112,13 @@ abstract public class Brick  {
             return 0;
         int out  = 0;
         if(getBrickFace().contains(b.getRight()))
-            out = LEFT_IMPACT;
+            out = getLeftImpact();
         else if(getBrickFace().contains(b.getLeft()))
-            out = RIGHT_IMPACT;
+            out = getRightImpact();
         else if(getBrickFace().contains(b.getUp()))
-            out = DOWN_IMPACT;
+            out = getDownImpact();
         else if(getBrickFace().contains(b.getDown()))
-            out = UP_IMPACT;
+            out = getUpImpact();
         return out;
     }
 
@@ -111,6 +151,30 @@ abstract public class Brick  {
 
     public static void setRnd(Random rnd) {
         Brick.rnd = rnd;
+    }
+
+    public static int getMinCrack() {
+        return MIN_CRACK;
+    }
+
+    public static int getDefCrackDepth() {
+        return DEF_CRACK_DEPTH;
+    }
+
+    public static int getDefSteps() {
+        return DEF_STEPS;
+    }
+
+    public static void setMinCrack(int minCrack) {
+        MIN_CRACK = minCrack;
+    }
+
+    public static void setDefCrackDepth(int defCrackDepth) {
+        DEF_CRACK_DEPTH = defCrackDepth;
+    }
+
+    public static void setDefSteps(int defSteps) {
+        DEF_STEPS = defSteps;
     }
 }
 

@@ -69,15 +69,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private BufferedImage brickImage;
     private BufferedImage hourglassImage;
 
-    public static GameFrame getOwner(){
-        return owner;
-    }
-
-    public static void setOwner(GameFrame owner){
-        HomeMenu.owner = owner;
-    }
-
-
     public HomeMenu(GameFrame owner,Dimension area){
 
         this.setFocusable(true);
@@ -427,5 +418,13 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         else
             this.setCursor(Cursor.getDefaultCursor());
 
+    }
+
+    public static GameFrame getOwner(){
+        return owner;
+    }
+
+    public static void setOwner(GameFrame owner){
+        HomeMenu.owner = owner;
     }
 }

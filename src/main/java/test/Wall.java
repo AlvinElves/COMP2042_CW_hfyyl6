@@ -19,7 +19,6 @@ package test;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.Random;
 
 
 public class Wall {
@@ -96,22 +95,21 @@ public class Wall {
 
     private boolean impactWall(){
         for(Brick b : getBricks()){
-            switch(b.findImpact(getBall())) {
-                //Vertical Impact
-                case Brick.UP_IMPACT:
-                    getBall().reverseY();
-                    return b.setImpact(getBall().getDown(), Crack.UP);
-                case Brick.DOWN_IMPACT:
-                    getBall().reverseY();
-                    return b.setImpact(getBall().getUp(), Crack.DOWN);
-
-                //Horizontal Impact
-                case Brick.LEFT_IMPACT:
-                    getBall().reverseX();
-                    return b.setImpact(getBall().getRight(), Crack.RIGHT);
-                case Brick.RIGHT_IMPACT:
-                    getBall().reverseX();
-                    return b.setImpact(getBall().getLeft(), Crack.LEFT);
+            if(b.findImpact(getBall()) == Brick.getUpImpact()){
+                getBall().reverseY();
+                return b.setImpact(getBall().getDown(), Crack.getUP());
+            }
+            else if (b.findImpact(getBall()) == Brick.getDownImpact()) {
+                getBall().reverseY();
+                return b.setImpact(getBall().getUp(), Crack.getDOWN());
+            }
+            else if (b.findImpact(getBall()) == Brick.getLeftImpact()) {
+                getBall().reverseX();
+                return b.setImpact(getBall().getRight(), Crack.getRIGHT());
+            }
+            else if (b.findImpact(getBall()) == Brick.getRightImpact()) {
+                getBall().reverseX();
+                return b.setImpact(getBall().getLeft(), Crack.getLEFT());
             }
         }
         return false;

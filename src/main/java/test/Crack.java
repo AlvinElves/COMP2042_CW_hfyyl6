@@ -9,12 +9,12 @@ public class Crack {
     private static final int CRACK_SECTIONS = 3;
     private static final double JUMP_PROBABILITY = 0.7;
 
-    public static final int LEFT = 10;
-    public static final int RIGHT = 20;
-    public static final int UP = 30;
-    public static final int DOWN = 40;
-    public static final int VERTICAL = 100;
-    public static final int HORIZONTAL = 200;
+    private static int LEFT = 10;
+    private static int RIGHT = 20;
+    private static int UP = 30;
+    private static int DOWN = 40;
+    private static int VERTICAL = 100;
+    private static int HORIZONTAL = 200;
 
     private final Brick brick;
     private GeneralPath crack;
@@ -24,6 +24,13 @@ public class Crack {
 
 
     public Crack(Brick brick, int crackDepth, int steps) {
+        setLEFT(10);
+        setRIGHT(20);
+        setUP(30);
+        setDOWN(40);
+        setVERTICAL(100);
+        setHORIZONTAL(200);
+
         this.brick = brick;
         crack = new GeneralPath();
         this.crackDepth = crackDepth;
@@ -48,32 +55,31 @@ public class Crack {
         Point start = new Point();
         Point end = new Point();
 
+        Point tmp;
 
-        switch (direction) {
-            case LEFT:
-                start.setLocation(bounds.x + bounds.width, bounds.y);
-                end.setLocation(bounds.x + bounds.width, bounds.y + bounds.height);
-                Point tmp = makeRandomPoint(start, end, VERTICAL);
-                makeCrack(impact, tmp);
-                break;
-            case RIGHT:
-                start.setLocation(bounds.getLocation());
-                end.setLocation(bounds.x, bounds.y + bounds.height);
-                tmp = makeRandomPoint(start, end, VERTICAL);
-                makeCrack(impact, tmp);
-                break;
-            case UP:
-                start.setLocation(bounds.x, bounds.y + bounds.height);
-                end.setLocation(bounds.x + bounds.width, bounds.y + bounds.height);
-                tmp = makeRandomPoint(start, end, HORIZONTAL);
-                makeCrack(impact, tmp);
-                break;
-            case DOWN:
-                start.setLocation(bounds.getLocation());
-                end.setLocation(bounds.x + bounds.width, bounds.y);
-                tmp = makeRandomPoint(start, end, HORIZONTAL);
-                makeCrack(impact, tmp);
-                break;
+        if (direction == getLEFT()){
+            start.setLocation(bounds.x + bounds.width, bounds.y);
+            end.setLocation(bounds.x + bounds.width, bounds.y + bounds.height);
+            tmp = makeRandomPoint(start, end, getVERTICAL());
+            makeCrack(impact, tmp);
+        }
+        else if (direction == getRIGHT()){
+            start.setLocation(bounds.getLocation());
+            end.setLocation(bounds.x, bounds.y + bounds.height);
+            tmp = makeRandomPoint(start, end, getVERTICAL());
+            makeCrack(impact, tmp);
+        }
+        else if (direction == getUP()){
+            start.setLocation(bounds.x, bounds.y + bounds.height);
+            end.setLocation(bounds.x + bounds.width, bounds.y + bounds.height);
+            tmp = makeRandomPoint(start, end, getHORIZONTAL());
+            makeCrack(impact, tmp);
+        }
+        else if (direction == getDOWN()){
+            start.setLocation(bounds.getLocation());
+            end.setLocation(bounds.x + bounds.width, bounds.y);
+            tmp = makeRandomPoint(start, end, getHORIZONTAL());
+            makeCrack(impact, tmp);
         }
     }
 
@@ -136,17 +142,63 @@ public class Crack {
         Point out = new Point();
         int pos;
 
-        switch (direction) {
-            case HORIZONTAL:
-                pos = Brick.getRnd().nextInt(to.x - from.x) + from.x;
-                out.setLocation(pos, to.y);
-                break;
-            case VERTICAL:
-                pos = Brick.getRnd().nextInt(to.y - from.y) + from.y;
-                out.setLocation(to.x, pos);
-                break;
+        if(direction == getHORIZONTAL()){
+            pos = Brick.getRnd().nextInt(to.x - from.x) + from.x;
+            out.setLocation(pos, to.y);
+        }
+        else if (direction == getVERTICAL()){
+            pos = Brick.getRnd().nextInt(to.y - from.y) + from.y;
+            out.setLocation(to.x, pos);
         }
         return out;
+    }
+
+    public static int getLEFT() {
+        return LEFT;
+    }
+
+    public static void setLEFT(int LEFT) {
+        Crack.LEFT = LEFT;
+    }
+
+    public static int getRIGHT() {
+        return RIGHT;
+    }
+
+    public static void setRIGHT(int RIGHT) {
+        Crack.RIGHT = RIGHT;
+    }
+
+    public static int getUP() {
+        return UP;
+    }
+
+    public static void setUP(int UP) {
+        Crack.UP = UP;
+    }
+
+    public static int getDOWN() {
+        return DOWN;
+    }
+
+    public static void setDOWN(int DOWN) {
+        Crack.DOWN = DOWN;
+    }
+
+    public static int getVERTICAL() {
+        return VERTICAL;
+    }
+
+    public static void setVERTICAL(int VERTICAL) {
+        Crack.VERTICAL = VERTICAL;
+    }
+
+    public static int getHORIZONTAL() {
+        return HORIZONTAL;
+    }
+
+    public static void setHORIZONTAL(int HORIZONTAL) {
+        Crack.HORIZONTAL = HORIZONTAL;
     }
 
 }
