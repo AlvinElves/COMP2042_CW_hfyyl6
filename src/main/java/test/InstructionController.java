@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class InstructionController extends GameFrame implements MouseListener, MouseMotionListener {
+public class InstructionController implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {

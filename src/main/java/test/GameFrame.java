@@ -45,6 +45,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         homeMenu = new HomeMenu(this,new Dimension(450,300));
 
+        setInstruction(new InstructionModel(this, new Dimension(450,300)));
+
         highScore = new HighScore(this,new Dimension(450,300));
 
         this.add(homeMenu,BorderLayout.CENTER);
@@ -82,7 +84,6 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     }
 
     public void enableInstructionPage(){
-        setInstruction(new InstructionModel(this, new Dimension(450,300)));
         this.dispose();
         this.remove(homeMenu);
         this.add(getInstruction(),BorderLayout.CENTER);
