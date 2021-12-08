@@ -31,7 +31,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
 
     private static int i, j;
-    public static int[][] score;
+    private static int[][] score;
 
     /**
      * HighScore Constructor that will shows permanent high score and the current score of the game
@@ -56,7 +56,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
         borderStoke = new BasicStroke(2);
 
-        score = new int[8][3];
+        setScore(new int[8][3]);
 
         buttonFont = new Font("Helvetica",Font.PLAIN,20);
         greetingFont = new Font("Serif",Font.BOLD,50);
@@ -78,7 +78,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
             myReader.nextLine();
             while (myReader.hasNextLine()){
                 for (j = 0; j < 3; j++){
-                    score[i][j] = myReader.nextInt();
+                    getScore()[i][j] = myReader.nextInt();
                 }
                 i++;
             }
@@ -97,10 +97,10 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
             FileWriter myWriter = new FileWriter("resources/HighScores.txt");
             myWriter.write("Bricks\tMinutes\tSeconds");
             for(i = 0; i < 7; i++){
-                if(score[i][0] == 0 && score[i][1] == 0 && score[i][2] == 0){
+                if(getScore()[i][0] == 0 && getScore()[i][1] == 0 && getScore()[i][2] == 0){
                     break;
                 }
-                myWriter.write("\n" + score[i][0] + "\t" + score[i][1] + "\t" + score[i][2]);
+                myWriter.write("\n" + getScore()[i][0] + "\t" + getScore()[i][1] + "\t" + getScore()[i][2]);
             }
             myWriter.close();
         } catch (IOException e) {
@@ -115,61 +115,69 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
      */
     public static void sortingAfterGame(){
         int temp1, temp2, temp3;
-        if(score[6][0] < Wall.getTotalBrickBroken()){
-            score[6][0] = Wall.getTotalBrickBroken();
-            score[6][1] = GameTimer.getMinutes();
-            score[6][2] = GameTimer.getSeconds();
+        if(getScore()[6][0] < Wall.getTotalBrickBroken()){
+            getScore()[6][0] = Wall.getTotalBrickBroken();
+            getScore()[6][1] = GameTimer.getMinutes();
+            getScore()[6][2] = GameTimer.getSeconds();
         }
 
         for (i = 0; i < 7; i++) {
-            for (int j = i + 1; j < 7; j++) {
-                if (score[j][0] > score[i][0]) {
-                    temp1 = score[i][0];
-                    temp2 = score[i][1];
-                    temp3 = score[i][2];
-                    score[i][0] = score[j][0];
-                    score[i][1] = score[j][1];
-                    score[i][2] = score[j][2];
-                    score[j][0] = temp1;
-                    score[j][1] = temp2;
-                    score[j][2] = temp3;
+            for (j = i + 1; j < 7; j++) {
+                if (getScore()[j][0] > getScore()[i][0]) {
+                    temp1 = getScore()[i][0];
+                    temp2 = getScore()[i][1];
+                    temp3 = getScore()[i][2];
+                    getScore()[i][0] = getScore()[j][0];
+                    getScore()[i][1] = getScore()[j][1];
+                    getScore()[i][2] = getScore()[j][2];
+                    getScore()[j][0] = temp1;
+                    getScore()[j][1] = temp2;
+                    getScore()[j][2] = temp3;
                 }
             }
         }
 
         for (i = 0; i < 7; i++) {
-            for (int j = i + 1; j < 7; j++) {
-                if (score[j][0] == score[i][0] && score[j][1] < score[i][1]) {
-                    temp1 = score[i][0];
-                    temp2 = score[i][1];
-                    temp3 = score[i][2];
-                    score[i][0] = score[j][0];
-                    score[i][1] = score[j][1];
-                    score[i][2] = score[j][2];
-                    score[j][0] = temp1;
-                    score[j][1] = temp2;
-                    score[j][2] = temp3;
+            for (j = i + 1; j < 7; j++) {
+                if (getScore()[j][0] == getScore()[i][0] && getScore()[j][1] < getScore()[i][1]) {
+                    temp1 = getScore()[i][0];
+                    temp2 = getScore()[i][1];
+                    temp3 = getScore()[i][2];
+                    getScore()[i][0] = getScore()[j][0];
+                    getScore()[i][1] = getScore()[j][1];
+                    getScore()[i][2] = getScore()[j][2];
+                    getScore()[j][0] = temp1;
+                    getScore()[j][1] = temp2;
+                    getScore()[j][2] = temp3;
                 }
             }
         }
 
         for (i = 0; i < 7; i++) {
-            for (int j = i + 1; j < 7; j++) {
-                if (score[j][0] == score[i][0] && score[j][1] == score[i][1] && score[j][2] < score[i][2]) {
-                    temp1 = score[i][0];
-                    temp2 = score[i][1];
-                    temp3 = score[i][2];
-                    score[i][0] = score[j][0];
-                    score[i][1] = score[j][1];
-                    score[i][2] = score[j][2];
-                    score[j][0] = temp1;
-                    score[j][1] = temp2;
-                    score[j][2] = temp3;
+            for (j = i + 1; j < 7; j++) {
+                if (getScore()[j][0] == getScore()[i][0] && getScore()[j][1] == getScore()[i][1] && getScore()[j][2] < getScore()[i][2]) {
+                    temp1 = getScore()[i][0];
+                    temp2 = getScore()[i][1];
+                    temp3 = getScore()[i][2];
+                    getScore()[i][0] = getScore()[j][0];
+                    getScore()[i][1] = getScore()[j][1];
+                    getScore()[i][2] = getScore()[j][2];
+                    getScore()[j][0] = temp1;
+                    getScore()[j][1] = temp2;
+                    getScore()[j][2] = temp3;
                 }
             }
         }
 
         fileWrite();
+    }
+
+    public static int[][] getScore() {
+        return score;
+    }
+
+    public static void setScore(int[][] score) {
+        HighScore.score = score;
     }
 
     /**
@@ -235,7 +243,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
         FontRenderContext frc = g2d.getFontRenderContext();
 
-        scoreText = String.format("#%02d %dBricks %dMinutes %dSeconds", i+1, score[i][0], score[i][1], score[i][2]);
+        scoreText = String.format("#%02d %dBricks %dMinutes %dSeconds", i+1, getScore()[i][0], getScore()[i][1], getScore()[i][2]);
 
         Rectangle2D greetingsRect = greetingFont.getStringBounds("HIGH SCORE",frc);
         Rectangle2D scoreRect = textFont.getStringBounds(scoreText,frc);
@@ -253,13 +261,13 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         g2d.setFont(textFont);
         g2d.setColor(Color.WHITE);
         for(i = 0; i < 7; i++){
-            if(score[i][0] == 0 && score[i][1] == 0 && score[i][2] == 0){
+            if(getScore()[i][0] == 0 && getScore()[i][1] == 0 && getScore()[i][2] == 0){
                 break;
             }
             sX = (int)(menuFace.getWidth() - scoreRect.getWidth()) / 2;
             sY += (int) scoreRect.getHeight() * 1.1;
             scoreText = String.format("#%02d %02dBricks %02dMinutes %02dSeconds", i+1,
-                    score[i][0], score[i][1], score[i][2]);
+                    getScore()[i][0], getScore()[i][1], getScore()[i][2]);
             g2d.drawString(scoreText,sX,sY);
         }
 

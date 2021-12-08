@@ -45,7 +45,7 @@ public class Player {
      */
     public Player(Point ballPoint,int width,int height,Rectangle container) {
         this.ballPoint = ballPoint;
-        moveAmount = 0;
+        setMoveAmount(0);
         playerFace = makeRectangle(width, height);
         min = container.x + (width / 2);
         max = min + container.width - width;
@@ -76,7 +76,7 @@ public class Player {
      * Move the player bar to left and right and make sure it is not over the screen
      */
     public void playerBarMove(){
-        double x = ballPoint.getX() + moveAmount;
+        double x = ballPoint.getX() + getMoveAmount();
         if(x < min || x > max)
             return;
         ballPoint.setLocation(x,ballPoint.getY());
@@ -87,21 +87,21 @@ public class Player {
      * Move the player bar to the left with negative moveAmount
      */
     public void playerBarMoveLeft(){
-        moveAmount = -getDefMoveAmount();
+        setMoveAmount(-getDefMoveAmount());
     }
 
     /**
      * Move the player bar to the right with positive moveAmount
      */
     public void playerBarMoveRight(){
-        moveAmount = getDefMoveAmount();
+        setMoveAmount(getDefMoveAmount());
     }
 
     /**
      * Stop the player bar from moving
      */
     public void playerBarStop(){
-        moveAmount = 0;
+        setMoveAmount(0);
     }
 
     /**
@@ -175,5 +175,21 @@ public class Player {
      */
     public static void setDefMoveAmount(int DEF_MOVE_AMOUNT){
         Player.DEF_MOVE_AMOUNT = DEF_MOVE_AMOUNT;
+    }
+
+    /**
+     * get method for moveAmount, encapsulating
+     * @return how much the player move
+     */
+    public static int getMoveAmount() {
+        return moveAmount;
+    }
+
+    /**
+     * set method for moveAmount, encapsulating
+     * @param moveAmount how much the player bar can move
+     */
+    public static void setMoveAmount(int moveAmount) {
+        Player.moveAmount = moveAmount;
     }
 }

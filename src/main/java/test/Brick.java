@@ -55,7 +55,8 @@ abstract public class Brick  {
         setBrickFace(makeBrickFace(pos,size));
         this.border = border;
         this.inner = inner;
-        this.fullStrength = this.strength = strength;
+        this.setStrength(strength);
+        this.fullStrength = getStrength();
 
     }
 
@@ -119,15 +120,15 @@ abstract public class Brick  {
      */
     public void repair() {
         broken = false;
-        strength = fullStrength;
+        setStrength(fullStrength);
     }
 
     /**
      * when the brick has impacted, reduce the strength of it, if the strength is 0 then make the brick is broken
      */
     public void impact(){
-        strength--;
-        broken = (strength == 0);
+        setStrength(getStrength() - 1);
+        broken = (getStrength() == 0);
     }
 
     /**
@@ -280,6 +281,14 @@ abstract public class Brick  {
      */
     public static void setDefSteps(int defSteps) {
         DEF_STEPS = defSteps;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 }
 
