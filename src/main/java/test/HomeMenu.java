@@ -69,15 +69,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private BufferedImage brickImage;
     private BufferedImage hourglassImage;
 
-    public static GameFrame getOwner(){
-        return owner;
-    }
-
-    public static void setOwner(GameFrame owner){
-        HomeMenu.owner = owner;
-    }
-
-
+    /**
+     * Home Menu Constructor that will show home menu
+     * @param owner Game Frame owner that will set up the home menu screen
+     * @param area the screen of home menu, how big is it
+     */
     public HomeMenu(GameFrame owner,Dimension area){
 
         this.setFocusable(true);
@@ -87,8 +83,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         this.addMouseMotionListener(this);
 
         setOwner(owner);
-
-
 
         menuFace = new Rectangle(new Point(0,0),area);
         this.setPreferredSize(area);
@@ -105,15 +99,20 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         gameTitleFont = new Font("Serif",Font.BOLD,45);
         creditsFont = new Font("Serif",Font.PLAIN,15);
         buttonFont = new Font("Helvetica",Font.PLAIN,23);
-
     }
 
-
+    /**
+     * Paint the screen, shows text, button, images and background images
+     * @param g graphics parameter that shows the screen stuffs
+     */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
-
+    /**
+     * Draw the screen, images, text and buttons
+     * @param g2d graphics2d parameter
+     */
     public void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
@@ -153,6 +152,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.setColor(prevColor);
     }
 
+    /**
+     * Draw the background image
+     * @param g2d graphics2d parameter
+     */
     private void drawContainer(Graphics2D g2d){
         try {
             image = ImageIO.read(getClass().getResource("/BackGroundImage.jpg"));
@@ -163,6 +166,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.drawImage(image, 0, 0, 450, 300, this);
     }
 
+    /**
+     * Draw the text, like greetings, title
+     * @param g2d graphics2d parameter
+     */
     private void drawText(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -193,10 +200,12 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         g2d.setFont(creditsFont);
         g2d.drawString(CREDITS,sX,sY);
-
-
     }
 
+    /**
+     * Draw the button, like start, exit, instruction and high score
+     * @param g2d graphics2d parameter
+     */
     private void drawButton(Graphics2D g2d){
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -341,6 +350,13 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * When start is clicked, start the game
+     * When exit is clicked, exit the game
+     * When instruction is clicked, show the instruction page
+     * When high score is clicked, show the high score page
+     * @param mouseEvent user's mouse when clicked
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -361,6 +377,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * When buttons are pressed put the button text and border to a different colour
+     * @param mouseEvent user's mouse when pressed
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -383,6 +403,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         }
     }
 
+    /**
+     * When buttons are released put the button text and border to the original colour
+     * @param mouseEvent user's mouse when released
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if(startClicked ){
@@ -419,6 +443,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * When user cursor is moved to the buttons, change the cursor to a hand cursor
+     * @param mouseEvent user's mouse move
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -427,5 +455,21 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         else
             this.setCursor(Cursor.getDefaultCursor());
 
+    }
+
+    /**
+     * get method for owner, encapsulating
+     * @return the owner of class
+     */
+    public static GameFrame getOwner(){
+        return owner;
+    }
+
+    /**
+     * set method for owner, encapsulating
+     * @param owner the owner you want to set for the class
+     */
+    public static void setOwner(GameFrame owner){
+        HomeMenu.owner = owner;
     }
 }

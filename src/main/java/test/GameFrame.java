@@ -22,7 +22,6 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
@@ -34,6 +33,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
+    /**
+     * Game Frame Constructor that will be like the brain of everything
+     */
     public GameFrame(){
         super();
 
@@ -45,6 +47,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         homeMenu = new HomeMenu(this,new Dimension(450,300));
 
+        setInstruction(new InstructionModel(this, new Dimension(450,300)));
+
         highScore = new HighScore(this,new Dimension(450,300));
 
         this.add(homeMenu,BorderLayout.CENTER);
@@ -53,6 +57,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * Initialise the game frame, the screen of game
+     */
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -61,70 +68,84 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setVisible(true);
     }
 
+    /**
+     * Go back to the home menu page from instruction page
+     */
     public void backToHomePage(){
         this.dispose();
         this.remove(getInstruction());
         this.add(homeMenu,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
-        /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * Go back to the home menu page from High Score page
+     */
     public void backToHomePageFromHighScore(){
         this.dispose();
         this.remove(highScore);
         this.add(homeMenu,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
-        /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * Go to the instruction page from home menu page
+     */
     public void enableInstructionPage(){
-        setInstruction(new InstructionModel(this, new Dimension(450,300)));
         this.dispose();
         this.remove(homeMenu);
         this.add(getInstruction(),BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
-        /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * Go to the high score page from home menu page
+     */
     public void enableHighScorePage(){
         this.dispose();
         this.remove(homeMenu);
         this.add(highScore,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
-        /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * Go to the high score page after the game ends, from game board
+     */
     public void enableHighScorePageFromGameBoard(){
         this.dispose();
         this.remove(gameBoard);
         this.add(highScore,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
-        /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * Go to the game board from home menu, starts the game and start everything from scratch
+     */
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenu);
         this.add(gameBoard,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
-        /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
         Wall.setTotalBrickBroken(0);
         GameTimer.resetGame();
 
     }
 
+    /**
+     * Set the screen in the middle of the user's screen
+     */
     private void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
@@ -132,7 +153,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setLocation(x,y);
     }
 
-
+    /**
+     * When the window screen is focused, user is able to play the game
+     * @param windowEvent user's window screen
+     */
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
         /*
@@ -146,6 +170,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = true;
     }
 
+    /**
+     * When the window screen lost focused, everything stops timer or ball and player movement
+     * @param windowEvent user's window screen
+     */
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)
@@ -153,10 +181,18 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * get method for instruction Model, encapsulating
+     * @return the instruction model screen
+     */
     public static InstructionModel getInstruction(){
         return instructionModel;
     }
 
+    /**
+     * set method for instruction Model, encapsulating
+     * @param instructionModel set the instruction screen, like the size
+     */
     public void setInstruction(InstructionModel instructionModel){
         GameFrame.instructionModel = instructionModel;
     }

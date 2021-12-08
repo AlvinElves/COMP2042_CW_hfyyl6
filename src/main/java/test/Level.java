@@ -19,6 +19,14 @@ public class Level {
 
     private Wall wall;
 
+    /**
+     * Constructor for Level that shows the bricks that is on the top of each level
+     * @param drawArea size of the bricks level
+     * @param brickCount number of bricks
+     * @param lineCount number of line
+     * @param brickDimensionRatio size of bricks
+     * @param wall Wall class
+     */
     public Level(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Wall wall){
         levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
         level = 0;
@@ -26,6 +34,15 @@ public class Level {
 
     }
 
+    /**
+     * All the rows of bricks are the same brick
+     * @param drawArea size of the bricks level
+     * @param brickCnt number of bricks
+     * @param lineCnt number of lines
+     * @param brickSizeRatio size of the brick
+     * @param type type of the brick
+     * @return the three layer of bricks
+     */
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -66,6 +83,16 @@ public class Level {
 
     }
 
+    /**
+     * The bricks are alternate one by one
+     * @param drawArea size of the bricks level
+     * @param brickCnt number of bricks
+     * @param lineCnt number of lines
+     * @param brickSizeRatio size of the brick
+     * @param typeA first type of brick
+     * @param typeB second type of brick
+     * @return the three layer of alternate placing bricks
+     */
     private Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -111,6 +138,14 @@ public class Level {
         return tmp;
     }
 
+    /**
+     * Each of the level has different type of bricks and pattern
+     * @param drawArea size of the bricks level
+     * @param brickCount number of brick
+     * @param lineCount number of line
+     * @param brickDimensionRatio size of the brick
+     * @return each level with different pattern and bricks
+     */
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
@@ -121,6 +156,13 @@ public class Level {
         return tmp;
     }
 
+    /**
+     * Make each of the brick, the colour of bricks
+     * @param point coordinate X and Y of the bricks
+     * @param size size of the bricks
+     * @param type type of the bricks
+     * @return bricks that is made
+     */
     private Brick makeBrick(Point point, Dimension size, int type){
         brickFactory = new BrickFactory();
         Brick out;
@@ -146,6 +188,9 @@ public class Level {
         return  out;
     }
 
+    /**
+     * Go to the next level if there is more, set the brick based on the level
+     */
     public void nextLevel(){
         if (hasLevel()) {
             wall.setBricks(levels[level++]);
@@ -153,10 +198,18 @@ public class Level {
         }
     }
 
+    /**
+     * check if there is more levels
+     * @return false if reach the final level, true if not
+     */
     public boolean hasLevel(){
         return level < levels.length;
     }
 
+    /**
+     * get method for level, encapsulating
+     * @return which level is player currently at
+     */
     public int getLevel(){
         return level;
     }

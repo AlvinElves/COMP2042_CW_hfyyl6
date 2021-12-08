@@ -34,7 +34,14 @@ public class DebugConsole extends JDialog implements WindowListener{
     private Level level;
     private GameTimer displayTimer;
 
-
+    /**
+     * Debug Console Constructor that will be shown when called for programmer to check levels more easily
+     * @param owner JFrame Owner that will show the debug console screen
+     * @param wall Wall class
+     * @param level Level class
+     * @param displayTimer Game Timer class
+     * @param gameBoard Game Board class
+     */
     public DebugConsole(JFrame owner,Wall wall, Level level, GameTimer displayTimer, GameBoard gameBoard){
 
         this.wall = wall;
@@ -51,6 +58,9 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.pack();
     }
 
+    /**
+     * Initialise the debug console, shows the screen
+     */
     private void initialize(){
         this.setModal(true);
         this.setTitle(TITLE);
@@ -60,7 +70,9 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.setFocusable(true);
     }
 
-
+    /**
+     * Set the location of the debug console screen
+     */
     private void setLocation(){
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();
         int y = ((owner.getHeight() - this.getHeight()) / 2) + owner.getY();
@@ -73,6 +85,10 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     }
 
+    /**
+     * When the debug console screen is closing, game board will be painted, shows
+     * @param windowEvent user's window screen
+     */
     @Override
     public void windowClosing(WindowEvent windowEvent) {
         gameBoard.repaint();
@@ -93,6 +109,10 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     }
 
+    /**
+     * Shows the debug console screen
+     * @param windowEvent user's window screen
+     */
     @Override
     public void windowActivated(WindowEvent windowEvent) {
         setLocation();

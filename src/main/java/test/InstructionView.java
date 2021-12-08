@@ -8,14 +8,26 @@ import java.io.IOException;
 
 public class InstructionView implements ImageObserver {
 
+    /**
+     * Instruction Viewing Constructor that will shows the instruction of the game
+     * @param g graphics parameter that shows the screen stuffs
+     */
     public InstructionView(Graphics g){
         paint(g);
     }
 
+    /**
+     * Paint the screen, shows text, button and background images
+     * @param g graphics parameter that shows the screen stuffs
+     */
     public void paint(Graphics g){
         drawInstructionMenu((Graphics2D)g);
     }
 
+    /**
+     * Draw the screen, text, button and images
+     * @param g2d graphics2d parameter
+     */
     public void drawInstructionMenu(Graphics2D g2d){
 
         drawInstructionContainer(g2d);
@@ -43,6 +55,10 @@ public class InstructionView implements ImageObserver {
         g2d.setColor(prevColor);
     }
 
+    /**
+     * Draw the instruction text
+     * @param g2d graphics2d parameter
+     */
     private void drawInstructionText(Graphics2D g2d){
 
 
@@ -129,14 +145,34 @@ public class InstructionView implements ImageObserver {
 
     }
 
+    /**
+     * The coordinate X of the text
+     * @param rect rectangle of the text
+     * @return the X coordinate for the text to be placed at
+     */
     public int drawTextCoordX(Rectangle2D rect){
         return (int)(InstructionModel.getMenuFace().getWidth() - rect.getWidth()) / 2;
     }
 
+    /**
+     * The coordinate Y of the text
+     * @param rect rectangle of the text
+     * @param spacingY spacing of text from one another
+     * @return the Y coordinate for the text to be placed at
+     */
     public int drawTextCoordY(Rectangle2D rect, double spacingY){
         return (int) ((int) InstructionModel.getMenuFace().getHeight() / 5 + rect.getHeight() * spacingY);
     }
 
+    /**
+     * Draw the text
+     * @param g2d graphics2d parameter
+     * @param color colour of the text
+     * @param font font of the text
+     * @param x X coordinate of text
+     * @param y Y coordinate of text
+     * @param text text to put down
+     */
     private void drawTextPlace(Graphics2D g2d, Color color, Font font, int x, int y, String text){
 
         g2d.setColor(color);
@@ -144,6 +180,10 @@ public class InstructionView implements ImageObserver {
         g2d.drawString(text,x,y);
     }
 
+    /**
+     * Draw the back button
+     * @param g2d graphics2d parameter
+     */
     private void drawInstructionButton(Graphics2D g2d){
 
         InstructionModel.setTextFont(new Font("Helvetica",Font.PLAIN,20));
@@ -189,6 +229,10 @@ public class InstructionView implements ImageObserver {
 
     }
 
+    /**
+     * Draw the instruction background image
+     * @param g2d graphics2d parameter
+     */
     private void drawInstructionContainer(Graphics2D g2d){
         try {
             InstructionModel.setImage(ImageIO.read(getClass().getResource("/Instruction.jpg")));
@@ -199,6 +243,16 @@ public class InstructionView implements ImageObserver {
         g2d.drawImage(InstructionModel.getImage(), 0, 0, 450, 300, this);
     }
 
+    /**
+     * Update image, the background image
+     * @param img image
+     * @param infoflags image flag
+     * @param x x coordinate of image
+     * @param y y coordinate of image
+     * @param width width of image
+     * @param height height of image
+     * @return true or false of the image
+     */
     @Override
     public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
         return false;

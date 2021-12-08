@@ -33,7 +33,11 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
     private static int i, j;
     public static int[][] score;
 
-
+    /**
+     * HighScore Constructor that will shows permanent high score and the current score of the game
+     * @param owner GameFrame owner that will set up the high score screen
+     * @param area the screen of the high score, how big is it
+     */
     public HighScore(GameFrame owner, Dimension area){
 
         this.setFocusable(true);
@@ -63,6 +67,9 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
     }
 
+    /**
+     * Read the scores from file and put it into an array
+     */
     public static void fileRead(){
         i = 0;
         try{
@@ -82,6 +89,9 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
     }
 
+    /**
+     * Write the array of scores back into the file
+     */
     public static void fileWrite(){
         try {
             FileWriter myWriter = new FileWriter("resources/HighScores.txt");
@@ -99,6 +109,10 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
     }
 
+    /**
+     * After game finishes, check the score with the lowest file score, if score is higher then gets put in lowest
+     * then sorting the file of scores.
+     */
     public static void sortingAfterGame(){
         int temp1, temp2, temp3;
         if(score[6][0] < Wall.getTotalBrickBroken()){
@@ -158,11 +172,18 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         fileWrite();
     }
 
+    /**
+     * Paint the screen, shows text, button and background images
+     * @param g graphics parameter that shows the screen stuffs
+     */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
-
+    /**
+     * Draw the screen, text, button and images
+     * @param g2d graphics2d parameter
+     */
     public void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
@@ -190,6 +211,10 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         g2d.setColor(prevColor);
     }
 
+    /**
+     * Draw the background image
+     * @param g2d graphics2d parameter
+     */
     private void drawContainer(Graphics2D g2d){
         try {
             image = ImageIO.read(getClass().getResource("/HighScore.jpg"));
@@ -200,6 +225,10 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         g2d.drawImage(image, 0, 0, 450, 300, this);
     }
 
+    /**
+     * Draw the text, high score and current score text
+     * @param g2d graphics2d parameter
+     */
     private void drawText(Graphics2D g2d){
 
         g2d.setColor(Color.BLUE);
@@ -244,6 +273,10 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
     }
 
+    /**
+     * Draw the button, the back button for user to go back to home menu
+     * @param g2d graphics2d parameter
+     */
     private void drawButton(Graphics2D g2d){
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -283,6 +316,10 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
     }
 
+    /**
+     * When back button is clicked go back to home menu
+     * @param mouseEvent user's mouse when clicked
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -292,6 +329,10 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
     }
 
+    /**
+     * When back button is pressed put the button text and border to a different colour
+     * @param mouseEvent user's mouse when pressed
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -302,6 +343,10 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
     }
 
+    /**
+     * When back button is released put the button text and border to the original colour
+     * @param mouseEvent user's mouse when released
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if(buttonClicked){
@@ -326,6 +371,10 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
 
     }
 
+    /**
+     * When user cursor is moved to the back button, change the cursor to a hand cursor
+     * @param mouseEvent user's mouse move
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();

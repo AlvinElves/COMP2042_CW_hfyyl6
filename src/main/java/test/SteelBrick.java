@@ -39,17 +39,32 @@ public class SteelBrick extends Brick {
         brickFace = super.getBrickFace();
     }
 
-
+    /**
+     * Steel Brick Constructor to make the Steel Brick
+     * @param pos Coordinate X and Y of brick
+     * @param size size of the brick
+     * @return steel brick structure
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * the face of the steel brick like inner and border color
+     * @return the face of steel brick
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * when brick is impacted with ball if not broken then impact
+     * @param point Coordinate of X and Y of the brick
+     * @param dir direction of brick that is impacted
+     * @return when the brick is broken, return false so it wont be hit
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
@@ -57,6 +72,10 @@ public class SteelBrick extends Brick {
         return  super.isBroken();
     }
 
+    /**
+     * the random number that is generated when brick is hit, if it is less than the probability of brick, then
+     * decrease the strength by 1
+     */
     public void impact(){
         if(rnd.nextDouble() < STEEL_PROBABILITY){
             super.impact();

@@ -5,8 +5,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class InstructionController extends GameFrame implements MouseListener, MouseMotionListener {
+public class InstructionController implements MouseListener, MouseMotionListener {
 
+    /**
+     * When back button is clicked go back to home menu
+     * @param mouseEvent user's mouse when clicked
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -15,6 +19,10 @@ public class InstructionController extends GameFrame implements MouseListener, M
         }
     }
 
+    /**
+     * When back button is pressed put the button text and border to a different colour
+     * @param mouseEvent user's mouse when pressed
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -24,6 +32,10 @@ public class InstructionController extends GameFrame implements MouseListener, M
         }
     }
 
+    /**
+     * When back button is released put the button text and border to the original colour
+     * @param mouseEvent user's mouse when released
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if(InstructionModel.getButtonClicked()) {
@@ -47,6 +59,10 @@ public class InstructionController extends GameFrame implements MouseListener, M
 
     }
 
+    /**
+     * When user cursor is moved to the back button, change the cursor to a hand cursor
+     * @param mouseEvent user's mouse move
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
