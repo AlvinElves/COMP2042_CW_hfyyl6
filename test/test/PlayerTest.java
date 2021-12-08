@@ -12,6 +12,7 @@ class PlayerTest {
     void playerBarMoveLeft() {
         Player player = new Player((Point) new Point(300,430).clone(),150,10, new Rectangle(0,0,600,450));
         Player.setDefMoveAmount(5);
+        player.playerBarMoveRight();
         player.playerBarMoveLeft();
         assertEquals(-5, Player.getMoveAmount());
     }
@@ -20,6 +21,7 @@ class PlayerTest {
     void playerBarMoveRight() {
         Player player = new Player((Point) new Point(300,430).clone(),150,10, new Rectangle(0,0,600,450));
         Player.setDefMoveAmount(3);
+        player.playerBarMoveLeft();
         player.playerBarMoveRight();
         assertEquals(3, Player.getMoveAmount());
     }
@@ -28,6 +30,8 @@ class PlayerTest {
     void playerBarStop() {
         Player player = new Player((Point) new Point(300,430).clone(),150,10, new Rectangle(0,0,600,450));
         Player.setDefMoveAmount(5);
+        player.playerBarMoveLeft();
+        player.playerBarMoveRight();
         player.playerBarStop();
         assertEquals(0, Player.getMoveAmount());
     }
