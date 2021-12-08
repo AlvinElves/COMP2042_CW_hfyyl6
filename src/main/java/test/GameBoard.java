@@ -61,7 +61,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsole debugConsole;
 
-
+    /**
+     * GameBoard Constructor that will shows the game, ball and brick and player
+     * @param owner JFrame owner that will set up the game board screen
+     */
     public GameBoard(JFrame owner){
         super();
 
@@ -125,7 +128,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     }
 
-
+    /**
+     * Initialise the game board, the screen of game
+     */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
@@ -135,7 +140,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         this.addMouseMotionListener(this);
     }
 
-
+    /**
+     * Paint the screen, shows text, bricks, ball and player
+     * @param g graphics parameter that shows the screen stuffs
+     */
     public void paint(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -160,6 +168,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * Clear the screen
+     * @param g2d graphics2d parameter
+     */
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
         g2d.setColor(BG_COLOR);
@@ -167,6 +179,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw the brick, setting colour of bricks
+     * @param brick Brick class
+     * @param g2d graphics2d parameter
+     */
     private void drawBrick(Brick brick,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -180,6 +197,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw the ball, setting colour of ball
+     * @param ball Ball class
+     * @param g2d graphics2d parameter
+     */
     private void drawBall(Ball ball,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -194,6 +216,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw the player bar, setting colour of player bar
+     * @param p Player class
+     * @param g2d graphics2d parameter
+     */
     private void drawPlayerControlBar(Player p,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -207,11 +234,19 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * Draw the game and also the pause menu
+     * @param g2d graphics2d parameter
+     */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
+    /**
+     * Draw the game
+     * @param g2d graphics2d parameter
+     */
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -227,6 +262,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * Draw the pause menu when user press Esc key
+     * @param g2d graphics2d parameter
+     */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
@@ -285,6 +324,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * when user press his keyboard, A, D, ESC, SPACE, ALT+SHIFT+F1
+     * @param keyEvent user's keyboard button pressed
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
@@ -323,11 +366,19 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     * when user stop press A or D, the player bar stops moving
+     * @param keyEvent user's keyboard button pressed
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         wall.getPlayer().playerBarStop();
     }
 
+    /**
+     * When the pause menu screens open, user can click on continue, restart and exit button
+     * @param mouseEvent user's mouse when clicked
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -382,6 +433,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     }
 
+    /**
+     * When user cursor is moved to the exit, continue and restart button, change the cursor to a hand cursor
+     * @param mouseEvent user's mouse move
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -396,6 +451,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     * When game screen loses focus, says focus lost and stop the game and game timer
+     */
     public void onLostFocus(){
         gameTimer.stop();
         GameTimer.setGameRunning(false);

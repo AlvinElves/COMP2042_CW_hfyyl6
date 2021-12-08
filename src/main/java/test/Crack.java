@@ -22,7 +22,12 @@ public class Crack {
     private int crackDepth;
     private int steps;
 
-
+    /**
+     * Crack Constructor to make the brick has crack if they have strength of 2 and has been hit
+     * @param brick Brick class
+     * @param crackDepth crack depth of brick
+     * @param steps steps of brick
+     */
     public Crack(Brick brick, int crackDepth, int steps) {
         setLEFT(10);
         setRIGHT(20);
@@ -35,19 +40,28 @@ public class Crack {
         crack = new GeneralPath();
         this.crackDepth = crackDepth;
         this.steps = steps;
-
     }
 
-
+    /**
+     * Draw the crack of the brick
+     * @return brick cracking
+     */
     public GeneralPath draw() {
-
         return crack;
     }
 
+    /**
+     * Reset the cracking
+     */
     public void reset() {
         crack.reset();
     }
 
+    /**
+     * Make the crack of the brick based on the ball hitting the brick
+     * @param point point of brick that is being hit
+     * @param direction direction of brick that is being hit
+     */
     protected void makeCrack(Point2D point, int direction) {
         Rectangle bounds = brick.getBrickFace().getBounds();
 
@@ -83,6 +97,11 @@ public class Crack {
         }
     }
 
+    /**
+     * Draw the crack of the brick
+     * @param start start point of the crack brick
+     * @param end end point of the crack of brick
+     */
     protected void makeCrack(Point start, Point end) {
 
         GeneralPath path = new GeneralPath();
@@ -112,16 +131,30 @@ public class Crack {
         crack.append(path, true);
     }
 
-    /** Instead of using variable, use a method to call it to enhance maintainability (REFACTORING) **/
+    /** Jump method
+     * Instead of using variable, use a method to call it to enhance maintainability (REFACTORING)
+     */
     public int jump (){
         return crackDepth * 5;
     }
 
+    /**
+     * Randomise number
+     * @param bound bound of brick
+     * @return random number of brick
+     */
     private int randomInBounds(int bound) {
         int n = (bound * 2) + 1;
         return Brick.getRnd().nextInt(n) - bound;
     }
 
+    /**
+     * Middle of brick
+     * @param i integer checking
+     * @param steps steps of brick
+     * @param divisions division of brick
+     * @return the integer checking, true or false
+     */
     private boolean inMiddle(int i, int steps, int divisions) {
         int low = (steps / divisions);
         int up = low * (divisions - 1);
@@ -129,6 +162,12 @@ public class Crack {
         return (i > low) && (i < up);
     }
 
+    /**
+     * If smaller than probability then do nothing
+     * @param bound bound of brick
+     * @param probability probability of brick, depends on method
+     * @return the method randomInBounds
+     */
     private int jumps(int bound, double probability) {
 
         if (Brick.getRnd().nextDouble() > probability)
@@ -137,6 +176,13 @@ public class Crack {
 
     }
 
+    /**
+     * Make random output
+     * @param from start point
+     * @param to end point
+     * @param direction direction of point, horizontal or vertical
+     * @return output location
+     */
     private Point makeRandomPoint(Point from, Point to, int direction) {
 
         Point out = new Point();
@@ -153,50 +199,98 @@ public class Crack {
         return out;
     }
 
+    /**
+     * get method for left, encapsulating
+     * @return left cracking
+     */
     public static int getLEFT() {
         return LEFT;
     }
 
+    /**
+     * set method for left, encapsulating
+     * @param LEFT left of the crack
+     */
     public static void setLEFT(int LEFT) {
         Crack.LEFT = LEFT;
     }
 
+    /**
+     * get method for right, encapsulating
+     * @return right cracking
+     */
     public static int getRIGHT() {
         return RIGHT;
     }
 
+    /**
+     * set method for right, encapsulating
+     * @param RIGHT right of the crack
+     */
     public static void setRIGHT(int RIGHT) {
         Crack.RIGHT = RIGHT;
     }
 
+    /**
+     * get method for up, encapsulating
+     * @return up cracking
+     */
     public static int getUP() {
         return UP;
     }
 
+    /**
+     * set method for up, encapsulating
+     * @param UP up of the crack
+     */
     public static void setUP(int UP) {
         Crack.UP = UP;
     }
 
+    /**
+     * get method for down, encapsulating
+     * @return down cracking
+     */
     public static int getDOWN() {
         return DOWN;
     }
 
+    /**
+     * set method for down, encapsulating
+     * @param DOWN down of the crack
+     */
     public static void setDOWN(int DOWN) {
         Crack.DOWN = DOWN;
     }
 
+    /**
+     * get method for vertical, encapsulating
+     * @return vertical crack
+     */
     public static int getVERTICAL() {
         return VERTICAL;
     }
 
+    /**
+     * set method for vertical, encapsulating
+     * @param VERTICAL vertical crack
+     */
     public static void setVERTICAL(int VERTICAL) {
         Crack.VERTICAL = VERTICAL;
     }
 
+    /**
+     * get method for horizontal, encapsulating
+     * @return horizontal crack
+     */
     public static int getHORIZONTAL() {
         return HORIZONTAL;
     }
 
+    /**
+     * set method for horizontal, encapsulating
+     * @param HORIZONTAL horizontal crack
+     */
     public static void setHORIZONTAL(int HORIZONTAL) {
         Crack.HORIZONTAL = HORIZONTAL;
     }

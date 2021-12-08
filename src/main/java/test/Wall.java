@@ -40,6 +40,11 @@ public class Wall {
 
     private static int totalBrickBroken = 0;
 
+    /**
+     * Wall Constructor to make the bricks, ball and player bar
+     * @param drawArea the rectangle of the game screen
+     * @param ballPos the starting ball position
+     */
     public Wall(Rectangle drawArea, Point ballPos){
 
         this.startPoint = new Point(ballPos);
@@ -56,20 +61,28 @@ public class Wall {
         setPlayer(new Player((Point) ballPos.clone(),150,10, drawArea));
 
         area = drawArea;
-
-
     }
 
+    /**
+     * Make the ball that is going to be in the game
+     * @param ballPos starting ball position
+     */
     private void makeBall(Point2D ballPos){
         ballFactory = new BallFactory();
         setBall(ballFactory.getBallType("RUBBER", ballPos));
     }
 
+    /**
+     * Start moving the player bar and ball
+     */
     public void move(){
         getPlayer().playerBarMove();
         getBall().move();
     }
 
+    /**
+     * When ball impacts with the brick or side and top border
+     */
     public void findImpacts(){
         if(getPlayer().impact(getBall())){
             getBall().reverseY();
@@ -93,6 +106,10 @@ public class Wall {
         }
     }
 
+    /**
+     * When the ball impact the brick
+     * @return if strength is 1 then break, if not crack the brick and decrease strength
+     */
     private boolean impactWall(){
         for(Brick b : getBricks()){
             if(b.findImpact(getBall()) == Brick.getUpImpact()){
@@ -115,19 +132,18 @@ public class Wall {
         return false;
     }
 
+    /**
+     * Check if the ball has impacted the top and side border
+     * @return true if impact else false
+     */
     private boolean impactBorder(){
         Point2D p = getBall().getPosition();
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
-    public int getBallCount(){
-        return ballCount;
-    }
-
-    public boolean isBallLost(){
-        return ballLost;
-    }
-
+    /**
+     * Reset the ball speed, move the ball and player bar back to starting position
+     */
     public void ballReset(){
         getPlayer().playerBarMoveTo(startPoint);
         getBall().moveTo(startPoint);
@@ -136,6 +152,9 @@ public class Wall {
         ballLost = false;
     }
 
+    /**
+     * Reset the wall, brick count and ball count
+     */
     public void wallReset(){
         for(Brick b : getBricks())
             b.repair();
@@ -143,62 +162,137 @@ public class Wall {
         ballCount = 3;
     }
 
+    /**
+     * check if there is anymore ball
+     * @return true if there is no more ball, else false
+     */
     public boolean ballEnd(){
         return ballCount == 0;
     }
 
+    /**
+     * check if there is anymore brick
+     * @return true if there is no more brick, else false
+     */
     public boolean isDone(){
         return brickCount == 0;
     }
 
+    /**
+     * get method for ballCount, encapsulating
+     * @return the ball count of the game
+     */
+    public int getBallCount(){
+        return ballCount;
+    }
+
+    /**
+     * get method for ball lost, encapsulating
+     * @return if the ball is lost
+     */
+    public boolean isBallLost(){
+        return ballLost;
+    }
+
+    /**
+     * set method for Speed X, encapsulating
+     * @param s horizontal speed of the ball
+     */
     public void setBallXSpeed(int s){
         getBall().setXSpeed(s);
     }
 
+    /**
+     * set method for Speed Y, encapsulating
+     * @param s vertical speed of the ball
+     */
     public void setBallYSpeed(int s){
         getBall().setYSpeed(s);
     }
 
+    /**
+     * reset the ball count, back to 3
+     */
     public void resetBallCount(){
         ballCount = 3;
     }
 
+    /**
+     * get method for brick, encapsulating
+     * @return the brick of the game
+     */
     public Brick[] getBricks() {
         return bricks;
     }
 
+    /**
+     * set method for brick, encapsulating
+     * @param bricks set the brick of wall
+     */
     public void setBricks(Brick[] bricks) {
         this.bricks = bricks;
     }
 
+    /**
+     * get method for brick count, encapsulating
+     * @return the brick count for the level
+     */
     public int getBrickCount(){
         return brickCount;
     }
 
+    /**
+     * set method for brick count, encapsulating
+     * @param brickCount number of brick in the game
+     */
     public void setBrickCount(int brickCount){
         this.brickCount = brickCount;
     }
 
+    /**
+     * get method for ball, encapsulating
+     * @return the ball of the class
+     */
     public Ball getBall() {
         return ball;
     }
 
+    /**
+     * set method for ball, encapsulating
+     * @param ball set the ball to the class
+     */
     public void setBall(Ball ball) {
         this.ball = ball;
     }
 
+    /**
+     * get method for player, encapsulating
+     * @return the player of the class
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * set method for player, encapsulating
+     * @param player set the player to the class
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    /**
+     * get method for total brick broken, encapsulating
+     * @return the number of total brick broken throughout the entire game
+     */
     public static int getTotalBrickBroken() {
         return totalBrickBroken;
     }
 
+    /**
+     *  set method for total brick broken, encapsulating
+     * @param totalBrickBroken the number of total brick broken being set
+     */
     public static void setTotalBrickBroken(int totalBrickBroken) {
         Wall.totalBrickBroken = totalBrickBroken;
     }
