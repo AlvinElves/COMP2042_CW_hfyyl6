@@ -122,7 +122,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
 
         for (i = 0; i < 7; i++) {
-            for (int j = i + 1; j < 7; j++) {
+            for (j = i + 1; j < 7; j++) {
                 if (getScore()[j][0] > getScore()[i][0]) {
                     temp1 = getScore()[i][0];
                     temp2 = getScore()[i][1];
@@ -138,7 +138,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
 
         for (i = 0; i < 7; i++) {
-            for (int j = i + 1; j < 7; j++) {
+            for (j = i + 1; j < 7; j++) {
                 if (getScore()[j][0] == getScore()[i][0] && getScore()[j][1] < getScore()[i][1]) {
                     temp1 = getScore()[i][0];
                     temp2 = getScore()[i][1];
@@ -154,7 +154,7 @@ public class HighScore extends JComponent implements MouseListener, MouseMotionL
         }
 
         for (i = 0; i < 7; i++) {
-            for (int j = i + 1; j < 7; j++) {
+            for (j = i + 1; j < 7; j++) {
                 if (getScore()[j][0] == getScore()[i][0] && getScore()[j][1] == getScore()[i][1] && getScore()[j][2] < getScore()[i][2]) {
                     temp1 = getScore()[i][0];
                     temp2 = getScore()[i][1];

@@ -1,1 +1,8 @@
 Bricks	Minutes	Seconds
+7	3	10
+2	2	2
+2	2	2
+2	2	2
+2	2	2
+2	2	2
+2	2	2
