@@ -30,6 +30,7 @@ public class SteelBrick extends Brick {
     private static final int STEEL_STRENGTH = 1;
     private static final double STEEL_PROBABILITY = 0.4;
 
+    private double randomProbability;
     private Random rnd;
     private Shape brickFace;
 
@@ -68,6 +69,7 @@ public class SteelBrick extends Brick {
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
+        setRandomProbability(rnd.nextDouble());
         impact();
         return  super.isBroken();
     }
@@ -77,9 +79,16 @@ public class SteelBrick extends Brick {
      * decrease the strength by 1
      */
     public void impact(){
-        if(rnd.nextDouble() < STEEL_PROBABILITY){
+        if(getRandomProbability() < STEEL_PROBABILITY){
             super.impact();
         }
     }
 
+    public double getRandomProbability() {
+        return randomProbability;
+    }
+
+    public void setRandomProbability(double randomProbability) {
+        this.randomProbability = randomProbability;
+    }
 }

@@ -23,38 +23,38 @@ class GameTimerTest {
     @org.junit.jupiter.api.Test
     void increaseSecond() {
         GameTimer gameTimer = new GameTimer();
-        GameTimer.resetGame();
-        gameTimer.increaseSecond();
+        GameTimer.resetGame(); //Make every variable back to 0 and false
+        gameTimer.increaseSecond(); //Increase second by 1
         assertEquals(1, GameTimer.getSeconds()); //Check if seconds increase by 1
 
         GameTimer.setSeconds(59);
-        gameTimer.increaseSecond();
+        gameTimer.increaseSecond(); //Increase second by 1
         assertEquals(1, GameTimer.getMinutes()); //Check if minute increase by 1 when second is more than 59
         assertEquals(0, GameTimer.getSeconds()); //Check if second is back to 0 when second is more than 59
     }
 
     @org.junit.jupiter.api.Test
     void getTempSeconds() {
-        GameTimer.setTempSeconds(10);
-        assertEquals(10, GameTimer.getTempSeconds());
+        GameTimer.setTempSeconds(10); //Set the temp second to 10
+        assertEquals(10, GameTimer.getTempSeconds()); //Check if the temp second is 10
     }
 
     @org.junit.jupiter.api.Test
     void setTempSeconds() {
-        GameTimer.setTempSeconds(30);
-        assertEquals(30, GameTimer.getTempSeconds());
+        GameTimer.setTempSeconds(30); //Set the temp second to 30
+        assertEquals(30, GameTimer.getTempSeconds()); //Check if the temp second is 30
     }
 
     @org.junit.jupiter.api.Test
     void getSeconds() {
-        GameTimer.setSeconds(15);
-        assertEquals(15, GameTimer.getSeconds());
+        GameTimer.setSeconds(15); //Set the second to 15
+        assertEquals(15, GameTimer.getSeconds()); //Check if the second is 15
     }
 
     @org.junit.jupiter.api.Test
     void setSeconds() {
-        GameTimer.setSeconds(45);
-        assertEquals(45, GameTimer.getSeconds());
+        GameTimer.setSeconds(45); //Set the second to 45
+        assertEquals(45, GameTimer.getSeconds()); //Check if the second is 45
     }
 
     @org.junit.jupiter.api.Test

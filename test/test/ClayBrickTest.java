@@ -11,21 +11,21 @@ class ClayBrickTest {
 
     @Test
     void impactClayBrick() {
-        clayBrick.impact();
-        assertEquals(0, clayBrick.getStrength());
+        clayBrick.impact(); //Impact the clay brick
+        assertEquals(0, clayBrick.getStrength()); //Check if the strength is 0
     }
 
     @Test
     void isClayBrickBroken() {
-        clayBrick.impact();
-        assertTrue(clayBrick.isBroken());
+        clayBrick.impact(); //Impact the clay brick
+        assertTrue(clayBrick.isBroken()); //Check if its strength is 0
     }
 
     @Test
     void repairClayBrick() {
-        clayBrick.impact();
-        clayBrick.repair();
-        assertEquals(1, clayBrick.getStrength());
+        clayBrick.impact(); //Impact the clay brick
+        clayBrick.repair(); //Repair the brick like strength
+        assertEquals(1, clayBrick.getStrength()); //Check if the strength is back to 1
     }
 
 }
