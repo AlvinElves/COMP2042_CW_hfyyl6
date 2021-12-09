@@ -4,6 +4,12 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
+/**
+ * Crack class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class Crack {
 
     private static final int CRACK_SECTIONS = 3;

@@ -5,6 +5,12 @@ import java.awt.geom.Point2D;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * SlowBrick class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class SlowBrick extends Brick{
 
     private static final String NAME = "Concrete Brick";

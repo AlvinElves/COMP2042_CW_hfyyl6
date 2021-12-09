@@ -4,6 +4,12 @@ import java.awt.*;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+/**
+ * ClayBrick class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class ClayBrick extends Brick {
 
     private static final String NAME = "Clay Brick";

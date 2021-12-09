@@ -4,6 +4,11 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
+/**
+ * CementBrick class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
 
 public class CementBrick extends Brick {
 

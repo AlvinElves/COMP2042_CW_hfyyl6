@@ -5,6 +5,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * InstructionController class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class InstructionController implements MouseListener, MouseMotionListener {
 
     /**

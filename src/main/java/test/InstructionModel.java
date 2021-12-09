@@ -5,6 +5,12 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * InstructionModel class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class InstructionModel extends JComponent{
 
     private static String text;

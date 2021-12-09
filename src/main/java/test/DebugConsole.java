@@ -22,6 +22,12 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * DebugConsole class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class DebugConsole extends JDialog implements WindowListener{
 
     private static final String TITLE = "Debug Console";
