@@ -22,6 +22,12 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * DebugPanel class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class DebugPanel extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;

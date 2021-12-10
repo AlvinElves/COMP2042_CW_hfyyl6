@@ -19,7 +19,7 @@ each level does, what bricks are use for each level. Wall class is split to appl
 I have also changed the background image of the home menu screen to beautify it.
 I have also use the maven build file.
 I have also done JUnit testing for a few meaningful classes and method, such as Timer, where if seconds is more than 59, it becomes 0 and minute increase by 1.
-Classes that has JUnit are GameTimer, HighScore, Player, all the brick and ball class
+Classes that has JUnit are GameTimer, HighScore, Player, Wall, all the brick and ball class
 
 Work done for addition:
 I have added one new level and two new bricks. Special Brick and Slow Brick. Special Brick will invert the user movement when breaks.

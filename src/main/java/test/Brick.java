@@ -5,6 +5,12 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
+/**
+ * Brick class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 abstract public class Brick  {
 
     private static int MIN_CRACK;

@@ -6,6 +6,12 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 
+/**
+ * InstructionView class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class InstructionView implements ImageObserver {
 
     /**

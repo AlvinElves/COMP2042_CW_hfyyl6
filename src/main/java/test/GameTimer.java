@@ -3,6 +3,12 @@ package test;
 import java.util.TimerTask;
 import java.util.Timer;
 
+/**
+ * GameTimer class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class GameTimer {
 
     private static int seconds;

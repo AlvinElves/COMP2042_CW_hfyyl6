@@ -22,6 +22,12 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
+/**
+ * GameFrame class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";

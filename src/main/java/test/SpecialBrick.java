@@ -3,6 +3,12 @@ package test;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+/**
+ * SpecialBrick class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class SpecialBrick extends Brick{
 
     private static final String NAME = "Special Brick";

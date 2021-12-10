@@ -15,6 +15,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * HighScore class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
+
 public class HighScore extends JComponent implements MouseListener, MouseMotionListener {
 
     private Rectangle menuFace;

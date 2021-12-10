@@ -19,6 +19,11 @@ package test;
 
 import java.awt.*;
 
+/**
+ * Player class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
 
 public class Player {
 

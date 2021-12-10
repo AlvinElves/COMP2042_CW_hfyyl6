@@ -28,6 +28,11 @@ import java.io.IOException;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
+/**
+ * HomeMenu class
+ * @author LimYiHong
+ * @since 09/12/2021
+ */
 
 public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener{
 
