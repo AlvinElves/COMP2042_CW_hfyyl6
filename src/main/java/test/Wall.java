@@ -54,14 +54,14 @@ public class Wall {
 
         this.startPoint = new Point(ballPos);
 
-        ballCount = 3;
-        ballLost = false;
+        setBallCount(3);
+        setBallLost(false);
         ballSpeedX = 4;
         ballSpeedY = -4;
 
         makeBall(ballPos);
-        getBall().setXSpeed(ballSpeedX);
-        getBall().setYSpeed(ballSpeedY);
+        getBall().setXSpeed(getBallSpeedX());
+        getBall().setYSpeed(getBallSpeedY());
 
         setPlayer(new Player((Point) ballPos.clone(),150,10, drawArea));
 
@@ -106,8 +106,8 @@ public class Wall {
             getBall().reverseY();
         }
         else if(getBall().getPosition().getY() > area.getY() + area.getHeight()){
-            ballCount--;
-            ballLost = true;
+            setBallCount(getBallCount() - 1);
+            setBallLost(true);
         }
     }
 
@@ -152,9 +152,9 @@ public class Wall {
     public void ballReset(){
         getPlayer().playerBarMoveTo(startPoint);
         getBall().moveTo(startPoint);
-        getBall().setXSpeed(ballSpeedX);
-        getBall().setYSpeed(ballSpeedY);
-        ballLost = false;
+        getBall().setXSpeed(getBallSpeedX());
+        getBall().setYSpeed(getBallSpeedY());
+        setBallLost(false);
     }
 
     /**
@@ -164,7 +164,7 @@ public class Wall {
         for(Brick b : getBricks())
             b.repair();
         brickCount = getBricks().length;
-        ballCount = 3;
+        resetBallCount();
     }
 
     /**
@@ -172,7 +172,7 @@ public class Wall {
      * @return true if there is no more ball, else false
      */
     public boolean ballEnd(){
-        return ballCount == 0;
+        return getBallCount() == 0;
     }
 
     /**
@@ -219,7 +219,7 @@ public class Wall {
      * reset the ball count, back to 3
      */
     public void resetBallCount(){
-        ballCount = 3;
+        setBallCount(3);
     }
 
     /**
@@ -300,5 +300,37 @@ public class Wall {
      */
     public static void setTotalBrickBroken(int totalBrickBroken) {
         Wall.totalBrickBroken = totalBrickBroken;
+    }
+
+    /**
+     * set method for ball lost, encapsulating
+     * @param ballLost is the ball lost
+     */
+    public void setBallLost(boolean ballLost) {
+        this.ballLost = ballLost;
+    }
+
+    /**
+     * get method for ball speed X, encapsulating
+     * @return the speed of ball for going left and right
+     */
+    public int getBallSpeedX() {
+        return ballSpeedX;
+    }
+
+    /**
+     * get method for ball speed Y, encapsulating
+     * @return the speed of ball for going up and down
+     */
+    public int getBallSpeedY() {
+        return ballSpeedY;
+    }
+
+    /**
+     * set method for ball count, encapsulating
+     * @param ballCount set the ball count of the game
+     */
+    public void setBallCount(int ballCount) {
+        this.ballCount = ballCount;
     }
 }
