@@ -1,7 +1,3 @@
-Name: Lim Yi Hong
-Student ID: 20215131
-
-Work done for refactoring:
 I have changed some method name to something that is much more easier to understand
 such as playerBarMoveLeft or playerBarMoveTo.
 I have also delete a few method that is redundant such as setSpeed, this is because
@@ -21,13 +17,14 @@ I have also use the maven build file.
 I have also done JUnit testing for a few meaningful classes and method, such as Timer, where if seconds is more than 59, it becomes 0 and minute increase by 1.
 Classes that has JUnit are GameTimer, HighScore, Player, Wall, all the brick and ball class
 
-Work done for addition:
-I have added one new level and two new bricks. Special Brick and Slow Brick. Special Brick will invert the user movement when breaks.
-For example, when user breaks the special brick, A will move right and D will move left until another special brick is broken. 
-Slow Bricks will slow the user movement for 4 seconds. 
+
+I have added one new level and two new bricks. Special Brick and Slow Brick. 
 I have also added a few pictures that is related to the game such as hourglass, brick and balls.
 I have also added two new features, an instruction page and a high score page that has its own background.
 Instruction page will shows the information on how to play the game, what each bricks does.
 High Score page will shows the top 7 scores that is stored in a permanent text file and the user current score.
 Once the user finishes the game, either win or lose, the high score page will be shown and the score will be save to the file
 if the scores are higher than the current permanent text file score. Then it will sort from highest score to lowest score.
+The rewarding feature I added is the timer feature where the lower the time, the more score you get. So to be in the high score sheet, the player needs to be strategic
+when playing. The penalty feature is the 2 new bricks, Special Brick will invert the user movement when breaks, A will change to move right and D change to move left.
+Slow Bricks will slow the user movement from 5 to 2 for 4 seconds. 
